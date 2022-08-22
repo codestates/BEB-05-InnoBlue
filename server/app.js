@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const indexRouter = require('./routes');
+const controller = require("./controllers/main.controller");
 const { sequelize } = require("./models");
-
 
 const app = express();
 const port = 4000;
@@ -38,6 +38,9 @@ app.use((err, req, res, next) => {
   });
 });
 
-module.exports = app.listen(port, () => {
-  console.log(`      🚀 Server is starting on ${port}`);
+module.exports = controller.init_server().then(() => {
+  app.listen(port, () => {
+      console.log(`      🚀 Server is starting on ${port}`);
+    }
+  )
 });
