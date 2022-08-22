@@ -32,3 +32,10 @@ CREATE TABLE `user` (
   `created_at` timestamp
 );
 ```
+
+- MYSQL Sequelize 사용법
+```
+npm install sequelize sequelize-cli mysql2
+
+npx sequelize db:migrate
+```
