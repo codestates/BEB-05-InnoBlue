@@ -28,7 +28,15 @@ function SignUp(){
     return userData ?
         (
             <div className = "signUpResult">
-                {message}
+                <p>
+                    {message}
+                </p>
+                <p>
+                    회원 id: {userData.id}
+                </p>
+                <p>
+                    회원 지갑 주소: {userData.address}
+                </p>
             </div>
         )
         :(
