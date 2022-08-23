@@ -1,0 +1,25 @@
+
+ :root{
+    --textColor: #eee;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 120px;
+    padding: 0rem;
+    background-color: rgb(105, 169, 252);
+    color: rgba(255, 255, 255);
+    position: fixed;
+    top: 0;
+    z-index: 1;
+  }
+  
+  nav a {
+    margin: 2rem;
+    color: var(--textColor);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }

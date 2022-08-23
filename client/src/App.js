@@ -1,8 +1,6 @@
-import logo from './logo.svg';
-import './App.css';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
-
-import MainPage from './pages/MainPage';
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import MainPage from "./pages/MainPage";
 // // import WritePage from './pages/WritePage';
 // import MyPage from './pages/MyPage';
 // import DetailPage from './pages/DetailPage';
@@ -10,15 +8,15 @@ import MainPage from './pages/MainPage';
 // import NFTmintPage from './pages/NFTmintPage';
 // import NotFound from './pages/NotFound'; //optional
 
-// import Header from './components/Header';
-// import Footer from './components/Footer'; //optional
+import Header from "./components/Header";
+//import Footer from './components/Footer'; //optional
 
 function App() {
   return (
     <BrowserRouter>
-      {/* <Header /> */}
+      {<Header />}
       <Routes>
-        <Route path = '/' element = {<MainPage />} />
+        <Route path="/" element={<MainPage />} />
         {/* <Route path = '/write' element = {<WritePage />} /> */}
         {/* <Route path = '/mypage' element = {<MyPage />} /> */}
         {/* <Route path = '/detail/:id' element = {<DetailPage />} /> */}
@@ -26,7 +24,7 @@ function App() {
         {/* <Route path = '/nftmint' element = {<NFTmintPage />} /> */}
         {/* <Route path = '*' element = {<NotFound />} /> */}
       </Routes>
-      {/* <Footer/> */}
+      {/* {<Footer /> } */}
     </BrowserRouter>
   );
 }
