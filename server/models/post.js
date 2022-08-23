@@ -1,11 +1,9 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Post = sequelize.define('Post', {
-    postId: {
+    userId: {
       allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
     },
     title: {
       type: DataTypes.STRING,
@@ -21,10 +19,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     charset: "utf8",
-    collate: "utf8_general_ci" // 한글 저장
+    collate: "utf8_general_ci", // 한글 저장
+    freezeTableName: true
   });
   Post.associate = (db) => {
-    db.User.belongsTo(db.User);
+    db.Post.belongsTo(db.User);
   }
   return Post;
 };

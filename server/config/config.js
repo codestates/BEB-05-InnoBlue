@@ -17,16 +17,5 @@ const test = {
   dialect: "mysql"
 };
 
-//const config = {
-//  development: {
-//    host: 'localhost',
-//    user: 'root',
-//    password: process.env.MYSQL_ROOT_PASSWORD,
-//    database: 'innoblue'
-//  }
-//};
-
-module.exports = config;
-
 module.exports = { development, test };
 

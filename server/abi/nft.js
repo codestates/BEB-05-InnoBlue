@@ -22219,3 +22219,4 @@ const NFT = {
       "version": 1
     }
   }
+  module.exports = NFT;
