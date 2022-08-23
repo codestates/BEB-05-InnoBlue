@@ -20,8 +20,8 @@ export default function Header() {
           className="Search-Input"
         />
 
-        <Link to="Mypage">Mypage</Link>
-        <Link to="signUpPage">Sing Up</Link>
+        <Link to="/">Mypage</Link>
+        <Link to="/signup">Sign Up</Link>
         <Link to="Login">login</Link>
         <Link to="Logout">logout</Link>
       </nav>
