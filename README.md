@@ -14,7 +14,6 @@ SERVER_PASSWORD=server
 SERVER_PRIVATE_KEY=가나슈_첫번째_계정_비밀키
 TOKEN_CONTRACT_ADDR=가나슈_토큰_컨트랙트_배포_주소
 NFT_CONTRACT_ADDR=가나슈_NFT_컨트랙트_배포_주소
-
 ```
 
 - npm install 명령어로 모듈 설치
