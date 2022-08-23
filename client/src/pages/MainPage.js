@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/Button';
 import main_img from './img/main_img.png';
 // import Write_page from './WritePage';
 
-
 export default function MainPage() {
     return <div>
         <Container className="panel">

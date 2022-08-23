@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    salt: {
+    salt: {  // DB 패스워드 암호화 모듈 나중에 작업 예정
       type: DataTypes.STRING
     }
   }, {

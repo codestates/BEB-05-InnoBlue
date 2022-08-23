@@ -5,12 +5,14 @@ import Container from 'react-bootstrap/Container';
 import Header from './components/Header';
 import MainPage from './pages/MainPage';
 import WritePage from './pages/WritePage';
+
 // import MyPage from './pages/MyPage';
 // import DetailPage from './pages/DetailPage';
 // import SignUpPage from './pages/SignUpPage';
 // import NFTmintPage from './pages/NFTmintPage';
 // import NotFound from './pages/NotFound'; //optional
 // import Footer from './components/Footer'; //optional
+
 
 function App() {
   return (
