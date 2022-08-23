@@ -17,12 +17,25 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    token_amount: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    eth_amount: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     salt: {
       type: DataTypes.STRING
     }
   }, {
     charset: "utf8",
-    collate: "utf8_general_ci" // 한글 저장
+    collate: "utf8_general_ci", // 한글 저장
+    freezeTableName: true
   });
   User.associate = (db) => {
     db.User.hasMany(db.Post);
