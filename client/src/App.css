@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+.features {
+  margin-top: 10em;
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+}
+
+.ck.ck-editor__editable:not(.ck-editor__nested-editable) {
+  min-height: 300px;
+}
