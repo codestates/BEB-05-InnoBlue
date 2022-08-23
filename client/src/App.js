@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
@@ -10,7 +10,7 @@ import MainPage from './pages/MainPage';
 // import NFTmintPage from './pages/NFTmintPage';
 // import NotFound from './pages/NotFound'; //optional
 
-// import Header from './components/Header';
+import Header from './components/Header';
 // import Footer from './components/Footer'; //optional
 
 function App() {
