@@ -2,20 +2,22 @@
 module.exports = (sequelize, DataTypes) => {
   const Post = sequelize.define('Post', {
     userId: {
-      allowNull: false,
       type: DataTypes.INTEGER,
     },
     title: {
       type: DataTypes.STRING,
-      allowNull: false  
     },
     nickname: {
       type: DataTypes.STRING,
-      allowNull: false
     },
     content: {
       type: DataTypes.STRING,
-      allowNull: false
+    },
+    p_count: {
+      type: DataTypes.INTEGER,
+    },
+    day: {
+      type: DataTypes.DATE,
     }
   }, {
     charset: "utf8",

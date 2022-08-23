@@ -49,13 +49,11 @@ module.exports = {
     }).then(function(){
       queryInterface.createTable('Post', {
         id: {
-          allowNull: false,
           autoIncrement: true,
           primaryKey: true,
           type: Sequelize.INTEGER
         },
         userId: {
-          allowNull: false,
           type: Sequelize.INTEGER,
           references: {
             model: 'User',
@@ -63,16 +61,19 @@ module.exports = {
           },
         },
         title: {
-          allowNull: false,
           type: Sequelize.STRING
         },
         nickname: {
-          allowNull: false,
           type: Sequelize.STRING
         },
         content: {
-          allowNull: false,
           type: Sequelize.STRING
+        },
+        p_count: {
+          type: Sequelize.INTEGER
+        },
+        day: {
+          type: Sequelize.DATE
         },
         createdAt: {
           allowNull: false,
