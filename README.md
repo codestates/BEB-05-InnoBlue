@@ -82,3 +82,170 @@ POST /user/join
 409 FAIL
 "이미 가입된 회원입니다."
 ```
+
+### 로그인 API
+
+```
+POST /user/login
+```
+
+- Request
+```
+{
+    "email": "sample@gmail.com",
+    "password": "sample"
+}
+```
+
+- Response
+```
+200 SUCCESS
+{
+    "data": {
+        "email": "sample@gmail.com",
+        "password": "sample"
+    },
+    "message": "로그인에 성공하였습니다."
+}
+
+400 FAIL
+"로그인 실패"
+```
+
+### 게시글 전체 리스트 API
+```
+POST /postlist
+```
+
+- Request
+```
+{
+    "userId": "sample"
+}
+```
+
+- Response
+```
+200 SUCCESS
+{
+    "data": {
+        "userId": "sample",
+    }
+}
+
+400 FAIL
+"에러"
+```
+
+### 게시글 작성 API
+```
+POST /writepost
+```
+
+- Request
+```
+{
+    "userId": "sample",
+    "nickname": "sample",
+    "title": "sample",
+    "content": "sample"
+}
+```
+
+- Response
+```
+200 SUCCESS
+{
+    "data": {
+        "userId": "sample",
+        "nickname": "sample",
+        "title": "sample",
+        "content": "sample",
+    },
+    "message": "게시글 작성 완료"
+}
+
+400 FAIL
+"에러"
+```
+
+### 게시글 조회 API
+```
+POST /readpost
+```
+
+- Request
+```
+{
+    "id": "sample"
+}
+```
+
+- Response
+```
+200 SUCCESS
+{
+    "data": {
+        "id": "sample"
+    },
+    "message": "게시글 조회 완료"
+}
+
+400 FAIL
+"에러"
+```
+
+### 게시글 수정 API
+```
+POST /updatepost
+```
+
+- Request
+```
+{
+    "content": "sample",
+    "id": "sample"
+}
+```
+
+- Response
+```
+200 SUCCESS
+{
+    "data": {
+        "content": "sample",
+        "id": "sample"
+    },
+    "message": "게시글 수정 완료"
+}
+
+400 FAIL
+"에러"
+```
+
+### 게시글 삭제 API
+```
+POST /delpost
+```
+
+- Request
+```
+{
+    "id": "sample"
+}
+```
+
+- Response
+```
+200 SUCCESS
+{
+    "data": {
+        "content": "sample",
+        "id": "sample"
+    },
+    "message": "게시글 삭제 완료"
+}
+
+400 FAIL
+"에러"
+```
