@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import main_img from './img/main_img.png';
-import Write_page from './WritePage';
+// import Write_page from './WritePage';
 
 
 export default function MainPage() {
@@ -45,8 +45,8 @@ export default function MainPage() {
                 </tbody>
             </Table>
             </div>
-            <Link to = "./WritePage">
-            <center><Button className="mb-5 p-3 btn-primary btn-lg">Go to Write Page</Button></center>
+            <Link to = "../WritePage">
+            <center><Button className="mt-4 mb-3 p-3 btn-primary btn-lg">Go to Write Page</Button></center>
             </Link>
             <div className="noneDiv"><img src={main_img} width={"100%"} className="main_img" alt="Main pic"/></div>
         </Container>
