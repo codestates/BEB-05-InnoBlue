@@ -45,3 +45,40 @@ npx sequelize db:migrate
 ```
 npm start
 ```
+
+## REST API
+
+### 엔드포인트
+- 개발: http://localhost:4000
+- 라이브: TBD
+
+### 회원가입 API
+
+```
+POST /user/join
+```
+
+- Request
+```
+{
+    "email": "sample@gmail.com",
+    "nickname": "sample",
+    "password": "sample"
+}
+```
+
+
+- Response
+```
+201 SUCCESS
+{
+    "message": "회원가입이 완료되었습니다.",
+    "data": {
+        "id": "sample@gmail.com",
+        "address": "생성된 계정 주소"
+    }
+}
+
+409 FAIL
+"이미 가입된 회원입니다."
+```
