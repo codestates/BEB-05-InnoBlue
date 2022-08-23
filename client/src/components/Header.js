@@ -21,10 +21,11 @@ export default function Header() {
         />
 
         <Link to="/">Mypage</Link>
-        <Link to="/signup">Sing Up</Link>
+        <Link to="/signup">Sign Up</Link>
         <Link to="Login">login</Link>
         <Link to="Logout">logout</Link>
       </nav>
     </header>
   );
 }
+
