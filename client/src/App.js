@@ -4,7 +4,7 @@ import MainPage from "./pages/MainPage";
 // // import WritePage from './pages/WritePage';
 // import MyPage from './pages/MyPage';
 // import DetailPage from './pages/DetailPage';
-// import SignUpPage from './pages/SignUpPage';
+import SignUpPage from './pages/SignUpPage';
 // import NFTmintPage from './pages/NFTmintPage';
 // import NotFound from './pages/NotFound'; //optional
 
@@ -15,15 +15,17 @@ function App() {
   return (
     <BrowserRouter>
       {<Header />}
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        {/* <Route path = '/write' element = {<WritePage />} /> */}
-        {/* <Route path = '/mypage' element = {<MyPage />} /> */}
-        {/* <Route path = '/detail/:id' element = {<DetailPage />} /> */}
-        {/* <Route path = '/signup' element = {<SignUpPage />} /> */}
-        {/* <Route path = '/nftmint' element = {<NFTmintPage />} /> */}
-        {/* <Route path = '*' element = {<NotFound />} /> */}
-      </Routes>
+      <div className="main">
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          {/* <Route path = '/write' element = {<WritePage />} /> */}
+          {/* <Route path = '/mypage' element = {<MyPage />} /> */}
+          {/* <Route path = '/detail/:id' element = {<DetailPage />} /> */}
+          <Route path = '/signup' element = {<SignUpPage />} />
+          {/* <Route path = '/nftmint' element = {<NFTmintPage />} /> */}
+          {/* <Route path = '*' element = {<NotFound />} /> */}
+        </Routes>
+      </div>
       {/* {<Footer /> } */}
     </BrowserRouter>
   );
