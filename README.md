@@ -23,7 +23,7 @@ NFT_CONTRACT_ADDR=가나슈_NFT_컨트랙트_배포_주소
 npm install
 ```
 
-- 서버 실행
+- 도커로 MySQL 서버 실행
 
 ```
 docker pull mysql:8
@@ -41,7 +41,7 @@ mysql -u root -p
 npx sequelize db:migrate
 ```
 
-- 서버 실행
+- 로컬 서버 실행
 
 ```
 npm start
