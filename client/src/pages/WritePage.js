@@ -26,7 +26,7 @@ export default function WritePage() {
                     </InputGroup>
             </div>
             <div className='form-wrapper'>
-                <div>
+                <div className ="text_box">
                     <CKEditor
                         editor={ClassicEditor}
                         data=""
@@ -47,7 +47,7 @@ export default function WritePage() {
                     />
                 </div>
             </div>
-            <center><Button className="mt-4 mb-3 p-3 btn-primary btn-lg">Send</Button></center>
+            <center><Button className="mt-4 mb-3 p-3 btn-primary btn-lg" type ="submit">Send</Button></center>
         </Container>
     </div>
 }
