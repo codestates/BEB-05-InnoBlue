@@ -9,6 +9,7 @@ import WritePage from './pages/WritePage';
 // import MyPage from './pages/MyPage';
 // import DetailPage from './pages/DetailPage';
 import SignUpPage from './pages/SignUpPage';
+import LogInPage from './pages/LogInPage';
 // import NFTmintPage from './pages/NFTmintPage';
 // import NotFound from './pages/NotFound'; //optional
 // import Footer from './components/Footer'; //optional
@@ -30,6 +31,7 @@ function App() {
             {/* <Route path = '/mypage' element = {<MyPage />} /> */}
             {/* <Route path = '/detail/:id' element = {<DetailPage />} /> */}
             <Route path = '/signup' element = {<SignUpPage />} />
+            <Route path = '/Login' element = {<LogInPage />} />
             {/* <Route path = '/nftmint' element = {<NFTmintPage />} /> */}
             {/* <Route path = '*' element = {<NotFound />} /> */}
           </Routes>
