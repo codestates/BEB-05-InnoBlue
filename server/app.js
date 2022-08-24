@@ -1,11 +1,23 @@
 const express = require("express");
 const cors = require("cors");
 const indexRouter = require('./routes');
+const session = require('express-session');
 const controller = require("./controllers/main.controller");
 const { sequelize } = require("./models");
 
 const app = express();
 const port = 4000;
+
+app.use(
+  session({
+    secret: 'a1b2',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 24 * 6 * 60 * 10000,
+    },
+  })
+);
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
