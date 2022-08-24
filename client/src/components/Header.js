@@ -1,30 +1,80 @@
+import React, { useState, useEffect } from "react";
+import { Button } from "./Button";
 import "./styles/header.css";
 import { Link } from "react-router-dom";
 
-export default function Header() {
+function Header() {
+  const [click, setClick] = useState(false);
+  const [button, setButton] = useState(true);
+
+  const handleClick = () => setClick(!click);
+  const closeMobileMenu = () => setClick(false);
+
+  const showButton = () => {
+    if (window.innerWidth <= 960) {
+      setButton(false);
+    } else {
+      setButton(true);
+    }
+  };
+
+  useEffect(() => {
+    showButton();
+  }, []);
+
+  window.addEventListener("resize", showButton);
+
   return (
-    <header>
-      <nav className="Navbar-Link">
-        <Link to="DetailPage">Market</Link>
-        <Link to="NFTmintPage">NFTmint</Link>
-        <Link to="WritePage">Board</Link>
+    <>
+      <nav className="header">
+        <div className="header-container">
+          <Link to="/" className="header-logo" onClick={closeMobileMenu}>
+            Inno Blue☁
+            <i class="fab fa-typo3" />
+          </Link>
+          <div className="menu-icon" onClick={handleClick}>
+            <i className={click ? "fas fa-times" : "fas fa-bars"} />
+          </div>
+          <ul className={click ? "header-menu active" : "header-menu"}>
+            <li className="header-item">
+              <Link to="/NFTmintPage" className="header-links" onClick={closeMobileMenu}>
+                NFT mint
+              </Link>
+            </li>
+            <li className="header-item">
+              <Link
+                to="/DetailPage"
+                className="header-links"
+                onClick={closeMobileMenu}
+              >
+                NFT maket
+              </Link>
+            </li>
+            <li className="header-item">
+              <Link
+                to="/Mypage"
+                className="header-links"
+                onClick={closeMobileMenu}
+              >
+                My page
+              </Link>
+            </li>
 
-        <Link to="/" className="Header-Logo">
-          🧿Blue Light
-        </Link>
-
-        <input
-          type="text"
-          size="30"
-          placeholder="Find the color you want"
-          className="Search-Input"
-        />
-
-        <Link to="Mypage">Mypage</Link>
-        <Link to="signUpPage">Sing Up</Link>
-        <Link to="Login">login</Link>
-        <Link to="Logout">logout</Link>
+            <li>
+              <Link
+                to="Login"
+                className="header-links-mobile"
+                onClick={closeMobileMenu}
+              >
+                Sign Up
+              </Link>
+            </li>
+          </ul>
+          {button && <Button buttonStyle="btn--outline">LOG IN</Button>}
+        </div>
       </nav>
-    </header>
+    </>
   );
 }
+
+export default Header;
