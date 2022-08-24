@@ -5,12 +5,44 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import { useState } from 'react';
+import DetailPage from './DetailPage';
+import axios from 'axios';
 
 // import Container from 'react-bootstrap/Container';
 // import Table from 'react-bootstrap/Table';
 
 export default function WritePage() {
-    return <div>
+    const [userId, setUserId] = useState();
+    const [nickname, setNickname] = useState();
+    const [title, setTitle] = useState();
+    const [content, setContent] = useState();
+    const [userData, setUserData] = useState();
+    const [message, setMessage] = useState();
+
+    const writePage = async () => {
+        try {
+            const result = await axios.post('http://localhost:4000/post/writepost',
+                {
+                    "userId": userId,
+                    "nickname": nickname,
+                    "title": title,
+                    "content": content
+                }
+            )
+            console.log(result);
+            setUserData(result.data.data);
+            setMessage(result.data.message);
+        } catch (e) {
+            setMessage(e.response.data);
+        }
+    }
+    return userData ? (
+        <div>
+            {message}
+        </div>
+    ) : (
+        <div>
         <Container>
             <h1>Write page</h1>
             <div>
@@ -22,6 +54,9 @@ export default function WritePage() {
                             aria-label="title"
                             aria-describedby="basic-addon1"
                             className="p-2"
+                            onChange ={(e)=> {
+                                setTitle(e.target.value);
+                            }}
                         />
                     </InputGroup>
             </div>
@@ -36,6 +71,7 @@ export default function WritePage() {
                         }}
                         onChange={(event, editor) => {
                             const data = editor.getData();
+                            setContent(data);
                             console.log({ event, editor, data });
                         }}
                         onBlur={(event, editor) => {
@@ -47,7 +83,9 @@ export default function WritePage() {
                     />
                 </div>
             </div>
-            <center><Button className="mt-4 mb-3 p-3 btn-primary btn-lg" type ="submit">Send</Button></center>
+            <center><Button className="mt-4 mb-3 p-3 btn-primary btn-lg" type ="submit" onClick={writePage}>Send</Button></center>
         </Container>
     </div>
+    );
+    
 }
