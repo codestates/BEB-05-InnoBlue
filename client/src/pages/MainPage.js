@@ -4,9 +4,46 @@ import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import main_img from './img/main_img.png';
+import axios from 'axios';
 // import Write_page from './WritePage';
 
 export default function MainPage() {
+    const [] = useState([{
+        idx: '', 
+        userID: '', 
+        title: '', 
+        nickname: '', 
+        content: '', 
+        createdAt: '', 
+        updatedAt: ''
+    }])
+
+    const [lastIdx, setLastIdx] = useState(0);
+
+    useEffect(async() => {
+        try{
+            const res = await axios.get('/postlist')
+            const _inputData = await res.data.map((rowData) => (
+                
+                setLastIdx(lastIdx+1), 
+                {
+                idx: rowData.id, 
+                userID: rowData.userId,
+                title: rowData.title,
+                nickname: rowData.nickname,
+                content: rowData.content,
+                createdAt: rowData.createdAt, 
+                updatedAt: rowData.updatedAt
+                })
+            )
+            setInputData(inputData.concat(_inputData))
+        } catch(e) {
+            console.error(e.message)
+        }
+        
+    }, [])
+
+
     return <div>
         <Container className="panel">
             <center><h1>메인 페이지</h1></center>
@@ -22,6 +59,18 @@ export default function MainPage() {
                     </tr>
                 </thead>
                 <tbody>
+                    
+                    <tr>
+                        <td>
+                        // router 로 이동 시 idx값을 param 으로 전달
+                            <Link to={`/BoardContent/${rowData.idx}`}>{rowData.idx}</Link>
+                        </td>
+                        <td>
+                            <Link to={`/BoardContent/${rowData.idx}`}>{rowData.title}</Link>
+                        </td>
+                    </tr>
+
+
                     <tr>
                     <td>1</td>
                     <td>We need to develop the project website for personal career!!</td>
