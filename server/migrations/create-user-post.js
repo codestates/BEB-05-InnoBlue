@@ -69,12 +69,6 @@ module.exports = {
         content: {
           type: Sequelize.STRING
         },
-        p_count: {
-          type: Sequelize.INTEGER
-        },
-        day: {
-          type: Sequelize.DATE
-        },
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE

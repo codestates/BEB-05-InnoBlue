@@ -7,10 +7,10 @@ exports.init = async () => {
     const address = accounts[0];
 
     const [user, created] = await User.findOrCreate({
-        where: { nickname:process.env.SERVER_NICKNAME },
+        where: { nickname:"server" },
         defaults: {
             email: "server@mail.com",
-            password: process.env.SERVER_PASSWORD,
+            password: "server",
             address: address,
             token_amount: 0,
             eth_amount: web3.utils.fromWei(await web3.eth.getBalance(address))
