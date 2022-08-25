@@ -156,13 +156,11 @@ POST /post/writepost
 ```
 200 SUCCESS
 {
+    "message": "게시글 작성 완료! 토큰 보상이 지급되었습니다.",
     "data": {
         "userId": "sample",
-        "nickname": "sample",
-        "title": "sample",
-        "content": "sample",
-    },
-    "message": "게시글 작성 완료"
+        "token_amount": "sample"
+    }
 }
 
 400 FAIL
