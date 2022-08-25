@@ -7,7 +7,7 @@ const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:7545'));
 // } = require('../global_variables');
 
 
-exports.user_join = async(req, res, next) => {
+const signup= async(req, res, next) => {
     // const tokenContract = await new web3.eth.Contract(
     //     TOKEN_CONTRACT_ABI,
     //     TOKEN_CONTRACT_ADDR,
@@ -44,5 +44,8 @@ exports.user_join = async(req, res, next) => {
     } catch(e) {
         throw Error(e);
     }
-}
+};
 
+module.exports = {
+    signup
+};

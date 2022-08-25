@@ -64,7 +64,7 @@ const writepost = async(req, res, next) => { // 게시글 작성
     await User.update({token_amount: token_amount}, {where: {address: user.address}});
     res.status(201).json({
         message: "게시글 작성 완료! 토큰 보상이 지급되었습니다.",
-        // data: { id: user.email, token_amount: token_amount},
+        data: { id: user.email, token_amount: token_amount},
     })
 }
 
