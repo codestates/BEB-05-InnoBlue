@@ -114,7 +114,7 @@ POST /user/login
 
 ### 게시글 전체 리스트 API
 ```
-POST /post/postlist
+GET /post/postlist
 ```
 
 - Request
@@ -171,7 +171,7 @@ POST /post/writepost
 
 ### 게시글 조회 API
 ```
-POST /post/readpost
+GET /post/readpost
 ```
 
 - Request
