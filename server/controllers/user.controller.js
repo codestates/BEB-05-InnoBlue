@@ -2,8 +2,10 @@ const {User} = require('../models');
 const Web3 = require('web3');
 const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:7545'));
 const tokenController = require("./token.controller");
+const { use } = require('../routes/user.route');
+const user = require('../models/user');
 
-const signup= async(req, res, next) => {
+const signup = async(req, res, next) => {
     try {
         const { email, nickname, password } = req.body;
 
@@ -37,6 +39,30 @@ const signup= async(req, res, next) => {
     }
 };
 
+const userinfo = async(req, res, next) => {
+    const user = await User.findOne({
+        where: {
+            id: req.params.userId
+        }
+    });
+
+    if(user){
+        res.status(200).json({
+            message: "유저 정보 조회 완료",
+            id: user.id,
+            email: user.email,
+            nickname: user.nickname,
+            address: user.address,
+            token_amount: user.token_amount,
+            eth_amount: user.eth_amount,
+            createdAt: user.createdAt
+        })
+    }else{
+        res.status(400).send("유저 정보 조회 실패");
+    }
+}
+
 module.exports = {
-    signup
+    signup,
+    userinfo
 };

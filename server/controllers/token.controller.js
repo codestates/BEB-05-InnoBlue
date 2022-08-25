@@ -29,14 +29,14 @@ const faucet = async(req, res, next) => {
     const result = await _faucet(to);
     const wei_amount = await web3.eth.getBalance(to);
     const eth_amount = await web3.utils.fromWei(wei_amount);
-    
+
     if(result){
         res.status(201).json({
             message: "이더리움 지급 완료!",
             data: { address: user.address, eth_amount: eth_amount},
         })
     }else{
-        res.status(400).json({ message: '이더리움 지급 에러 발생' })
+        res.status(400).send("이더리움 지급 에러 발생")
     }
 }
 
@@ -75,9 +75,7 @@ const tokenTransfer = async(req, res, next) => { // 게시글 작성
             data: { id: user.email, token_amount: token_amount},
         });
     } else{
-        res.status(400).json({
-            message: "토큰 전송이 실패했습니다."
-        });
+        res.status(400).send("토큰 전송이 실패했습니다.");
     }
 }
 
