@@ -303,3 +303,24 @@ POST /token/faucet
 400 FAIL
 "이더리움 지급 에러 발생"
 ```
+
+### 특정 유저 정보 조회 API
+```
+GET /user/${userId}/userinfo
+```
+- Response
+```
+200 SUCCESS
+{
+    "message": "유저 정보 조회 완료",
+    "email": "유저_이메일",
+    "nickname": "유저_닉네임",
+    "address": "유저_주소",
+    "token_amount": 토큰_양,
+    "eth_amount": 이더리움_양,
+    "createdAt": "2022-08-25T18:48:27.000Z"
+}
+
+400 FAIL
+"유저 정보 조회 실패"
+```
