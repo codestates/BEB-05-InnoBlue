@@ -6,6 +6,7 @@ import "./styles/home.css";
 function Home() {
   return (
     <div className="home-container">
+      {/*이미지 추가할 경우 글씨 밀려남 현상 발생*/}
       {/* <img className="home-images" alt="img-home" src="/images/img-home.jpg" /> */}
       <h1>What's your color?</h1>
       <p>I wanna know</p>

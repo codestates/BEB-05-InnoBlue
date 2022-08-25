@@ -69,6 +69,7 @@ function Header() {
                 Sign Up
               </Link>
             </li>
+            
           </ul>
           {button && <Button buttonStyle="btn--outline">LOG IN</Button>}
         </div>

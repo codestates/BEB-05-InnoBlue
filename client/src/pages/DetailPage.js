@@ -3,6 +3,7 @@ import "./styles/detailpage.css";
 import CardItem from './cardItem';
 
 // import db from
+
 export default function DetailPage() {
   return (
     <div className='mypage'>
