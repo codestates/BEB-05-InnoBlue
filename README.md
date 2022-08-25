@@ -75,7 +75,7 @@ POST /user/signup
     "message": "회원가입이 완료되었습니다.",
     "data": {
         "id": "sample@gmail.com",
-        "address": "생성된 계정 주소"
+        "address": "생성된_계정_주소"
     }
 }
 
@@ -120,7 +120,7 @@ GET /post/postlist
 - Request
 ```
 {
-    "userId": "sample"
+    "userId": number
 }
 ```
 
@@ -129,7 +129,7 @@ GET /post/postlist
 200 SUCCESS
 {
     "data": {
-        "userId": "sample",
+        "userId": number,
     }
 }
 
@@ -145,7 +145,7 @@ POST /post/writepost
 - Request
 ```
 {
-    "userId": "sample",
+    "userId": number,
     "nickname": "sample",
     "title": "sample",
     "content": "sample"
@@ -158,7 +158,7 @@ POST /post/writepost
 {
     "message": "게시글 작성 완료! 토큰 보상이 지급되었습니다.",
     "data": {
-        "userId": "sample",
+        "userId": number,
         "token_amount": "sample"
     }
 }
@@ -175,7 +175,7 @@ GET /post/readpost
 - Request
 ```
 {
-    "id": "sample"
+    "id": number
 }
 ```
 
@@ -184,7 +184,7 @@ GET /post/readpost
 200 SUCCESS
 {
     "data": {
-        "id": "sample"
+        "id": number
     },
     "message": "게시글 조회 완료"
 }
@@ -202,7 +202,7 @@ POST /post/updatepost
 ```
 {
     "content": "sample",
-    "id": "sample"
+    "id": number
 }
 ```
 
@@ -212,7 +212,7 @@ POST /post/updatepost
 {
     "data": {
         "content": "sample",
-        "id": "sample"
+        "id": number
     },
     "message": "게시글 수정 완료"
 }
@@ -229,7 +229,7 @@ POST /post/delpost
 - Request
 ```
 {
-    "id": "sample"
+    "id": number
 }
 ```
 
@@ -239,11 +239,67 @@ POST /post/delpost
 {
     "data": {
         "content": "sample",
-        "id": "sample"
+        "id": number
     },
     "message": "게시글 삭제 완료"
 }
 
 400 FAIL
 "에러"
+```
+
+### 유저간 토큰 전송 API
+```
+POST /token/token_transfer
+```
+
+- Request
+```
+{
+    "id" : 유저_아이디,
+    "email" : "토큰_주고_싶은_유저_이메일",
+    "amount" : 토큰_양
+}
+```
+
+- Response
+```
+200 SUCCESS
+{
+    "message": "토큰 전송이 완료되었습니다.",
+    "data": {
+        "id": "유저_이메일",
+        "token_amount": "토큰_양"
+    }
+}
+
+400 FAIL
+"토큰 전송이 실패했습니다."
+```
+
+### ETH Faucet API
+```
+POST /token/faucet
+```
+
+- Request
+```
+{
+    "id" : 유저_아이디
+}
+```
+
+- Response
+```
+200 SUCCESS
+{
+    "message": "이더리움 지급 완료!",
+    "data": {
+        "id": "유저_주소",
+        "eth_amount": "이더리움_양"
+    }
+}
+
+400 FAIL
+"이더리움 지급 에러 발생"
 ```
