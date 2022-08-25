@@ -55,7 +55,7 @@ npm start
 ### 회원가입 API
 
 ```
-POST /user/join
+POST /user/signup
 ```
 
 - Request
