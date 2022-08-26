@@ -1,10 +1,10 @@
 const { Post } = require('../models');
 
 const postlist = async(req, res, next) => { // 게시글 전체 리스트
-    const body = req.body;
 
     const result = await Post.findAll({
         order: [['id','ASC']],            // id기준 오름차순 정렬
+        limit:10,
         raw: true  
     });
     if (!result) {
