@@ -8,16 +8,11 @@ const {
 
 
 const postlist = async(req, res, next) => { // 게시글 전체 리스트
-    const body = req.body;
 
     const result = await Post.findAll({
-        where: {
-            userId: body.userId
-        },
-        offset: 0 + (body.page - 1) * 10, // offset설정으로 페이지에 맞는 글 찾기
-        limit: 10,                        // 10개만 보여주기
         order: [['id','ASC']],            // id기준 오름차순 정렬
-        raw: true                         // DB에서 field 정보만 가져오기
+        limit:10,
+        raw: true  
     });
     if (!result) {
         res.status(400).send({ data: null, message: '에러'})
