@@ -37,13 +37,13 @@ function Header() {
           </div>
           <ul className={click ? "header-menu active" : "header-menu"}>
             <li className="header-item">
-              <Link to="/NFTmintPage" className="header-links" onClick={closeMobileMenu}>
+              <Link to="/nftmint" className="header-links" onClick={closeMobileMenu}>
                 NFT mint
               </Link>
             </li>
             <li className="header-item">
               <Link
-                to="/DetailPage"
+                to="/detail"
                 className="header-links"
                 onClick={closeMobileMenu}
               >
@@ -52,7 +52,7 @@ function Header() {
             </li>
             <li className="header-item">
               <Link
-                to="/Mypage"
+                to="/mypage"
                 className="header-links"
                 onClick={closeMobileMenu}
               >
@@ -62,7 +62,7 @@ function Header() {
 
             <li>
               <Link
-                to="Login"
+                to="/login"
                 className="header-links-mobile"
                 onClick={closeMobileMenu}
               >

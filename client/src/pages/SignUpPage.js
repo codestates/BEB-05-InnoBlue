@@ -10,7 +10,7 @@ function SignUp(){
     
     const signUp = async () => {
         try {
-            const result = await axios.post('http://localhost:4000/user/join',
+            const result = await axios.post('http://localhost:4000/user/signup',
                 {
                     "email": email,
                     "nickname": nickname,
