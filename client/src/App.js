@@ -27,11 +27,11 @@ function App() {
         <Container className="features">
           <Routes>
             <Route path = '/' element = {<MainPage />} />
-            <Route path = '/WritePage' element = {<WritePage />} />
+            <Route path = '/writePage' element = {<WritePage />} />
             {/* <Route path = '/mypage' element = {<MyPage />} /> */}
             {/* <Route path = '/detail/:id' element = {<DetailPage />} /> */}
             <Route path = '/signup' element = {<SignUpPage />} />
-            <Route path = '/Login' element = {<LogInPage />} />
+            <Route path = '/login' element = {<LogInPage />} />
             {/* <Route path = '/nftmint' element = {<NFTmintPage />} /> */}
             {/* <Route path = '*' element = {<NotFound />} /> */}
           </Routes>
