@@ -1,0 +1,19 @@
+.create-item-img {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+.create-item-info {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.create-input-label {
+    display: flex;
+}
+.create-upload-file {
+    display: flex;
+}

@@ -79,6 +79,19 @@ const tokenTransfer = async(req, res, next) => { // 게시글 작성
     }
 }
 
+const mint = async (req, res, next) => {
+    // nickname, tokenURL 받아오기
+    // 락 해제
+    // 컨트랙트 객체 생성 erc20, erc721 둘 다
+    // 토큰 양 설정
+    // 서버 계정으로 민팅
+    const user = await User.findOne({
+        where: {
+            id: req.body.id
+        }
+    })
+}
+
 module.exports = {
     tokenTransfer,
     faucet,
