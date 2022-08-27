@@ -1,0 +1,52 @@
+import { useState } from 'react';
+import axios from 'axios';
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
+import "./styles/nftmintpage.css";
+
+export default function NFTMintPage() {
+    const [fileBlob, setFileBlob] = useState("")
+    const [title, setTile] = useState("")
+    const [isNotValidated, setIsNotValidated] = useState(false)
+
+    const handleChangeImgSrc = (target) => {
+        console.log(target.files[0])
+        const fileBlob = target.files[0]
+        setFileBlob(fileBlob)
+    }
+    const handleChangeTitle = (value) => {
+        setTile(value)
+    }
+    const mint = async () => {
+        if (fileBlob === "") setIsNotValidated(1)
+        else if (title === "") setIsNotValidated(2)
+        else setIsNotValidated(false)
+    }
+    return (
+        <div>
+            <Container>
+                <h1>Mint</h1>
+                <div>
+                    <div className="create-item-img">
+                        <label className="create-upload-file">이미지 업로드</label>
+                        <input className="create-upload-btn" type="file" accept="image/*" onChange={(e) => handleChangeImgSrc(e.target)} />
+                    </div>
+                    <div className="create-item-info">
+                        <label className="create-input-label">아이템 이름*</label>
+                        <input type="text" className="create-form-name" placeholder="Item Title" onChange={(e) => handleChangeTitle(e.target.value)} />
+                    </div>
+                </div>
+                <center><Button className="mt-4 mb-3 p-3 btn-primary btn-lg" onClick={mint}>Mint</Button></center>
+                {isNotValidated ?
+                    <div className="validation-content">
+                        {
+                            isNotValidated === 1
+                                ? <p className="validation-text">이미지 파일을 업로드하세요.</p>
+                                : <p className="validation-text">아이템 타이틀을 입력하세요.</p>
+                        }
+                    </div>: null    
+                }
+            </Container>
+        </div>
+    )
+}
