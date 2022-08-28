@@ -28,13 +28,10 @@ function Header() {
     <>
       <nav className="header">
         <div className="header-container">
-          <Link to="/" className="header-logo" onClick={closeMobileMenu}>
-            Inno Blue☁
+          <Link to="/main" className="header-logo" onClick={closeMobileMenu}>
+            <strong style={{color: 'red'}}>Inno</strong><strong style={{color: 'blue'}}> Blue☁</strong>
             <i className="fab fa-typo3" />
           </Link>
-          <div className="menu-icon" onClick={handleClick}>
-            <i className={click ? "fas fa-times" : "fas fa-bars"} />
-          </div>
           <ul className={click ? "header-menu active" : "header-menu"}>
             <li className="header-item">
               <Link to="/mint" className="header-links" onClick={closeMobileMenu}>
@@ -43,9 +40,9 @@ function Header() {
             </li>
             <li className="header-item">
               <Link
-                to="/detail"
+                to="../MainPage"
                 className="header-links"
-                onClick={closeMobileMenu}
+                onClick={handleClick}
               >
                 NFT maket
               </Link>
@@ -59,11 +56,10 @@ function Header() {
                 My page
               </Link>
             </li>
-
             <li>
               <Link
-                to="/login"
-                className="header-links-mobile"
+                to="/signup"
+                className="header-links"
                 onClick={closeMobileMenu}
               >
                 Sign Up
