@@ -2,7 +2,11 @@ import { useState } from 'react';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
-import "./styles/nftmintpage.css";
+import "./styles/NFTmintPage.css";
+import Form from 'react-bootstrap/Form';
+
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 export default function NFTMintPage() {
     const [fileBlob, setFileBlob] = useState("")
@@ -24,9 +28,37 @@ export default function NFTMintPage() {
     }
     return (
         <div>
-            <Container>
+            <Container className='Container_mint' >
                 <h1>Mint</h1>
-                <div>
+                <Row>
+                    <Col></Col>
+                    <Col xs={8} className="Mint_form rounded">
+                        <Form >
+                            <Form.Group className="m-3 p-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>이미지 업로드</Form.Label>
+                                <Form.Control
+                                className="p-2"
+                                type="file"
+                                accept="image/*" 
+                                onChange={(e) => handleChangeImgSrc(e.target)}
+                                placeholder="" />
+                            </Form.Group>
+                            <Form.Group className="m-3 p-3" controlId="exampleForm.ControlTextarea1">
+                                <Form.Label>아이템 이름*</Form.Label>
+                                <Form.Control 
+                                className="p-2"
+                                type="text"
+                                placeholder="Item Title" 
+                                onChange={(e) => handleChangeTitle(e.target.value)}/>
+                            </Form.Group>
+                        </Form> 
+                        <center><Button className="m-4 p-3 btn-dark btn-lg rounded" onClick={mint}>Mint</Button></center>
+                    </Col>
+                    <Col></Col>
+                    
+                </Row>
+                
+                {/* <div>
                     <div className="create-item-img">
                         <label className="create-upload-file">이미지 업로드</label>
                         <input className="create-upload-btn" type="file" accept="image/*" onChange={(e) => handleChangeImgSrc(e.target)} />
@@ -35,8 +67,8 @@ export default function NFTMintPage() {
                         <label className="create-input-label">아이템 이름*</label>
                         <input type="text" className="create-form-name" placeholder="Item Title" onChange={(e) => handleChangeTitle(e.target.value)} />
                     </div>
-                </div>
-                <center><Button className="mt-4 mb-3 p-3 btn-primary btn-lg" onClick={mint}>Mint</Button></center>
+                </div> */}
+                
                 {isNotValidated ?
                     <div className="validation-content">
                         {
