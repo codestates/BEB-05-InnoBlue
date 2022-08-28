@@ -69,11 +69,37 @@ module.exports = {
         content: {
           type: Sequelize.STRING
         },
-        p_count: {
+        createdAt: {
+          allowNull: false,
+          type: Sequelize.DATE
+        },
+        updatedAt: {
+          allowNull: false,
+          type: Sequelize.DATE
+        }
+      });
+    }).then(function(){
+      queryInterface.createTable('NFT', {
+        id: {
+          autoIncrement: true,
+          primaryKey: true,
           type: Sequelize.INTEGER
         },
-        day: {
-          type: Sequelize.DATE
+        userId: {
+          type: Sequelize.INTEGER,
+          references: {
+            model: 'User',
+            key: 'id'
+          },
+        },
+        tokenId: {
+          type: Sequelize.INTEGER
+        },
+        title: {
+          type: Sequelize.STRING
+        },
+        tx_hash: {
+          type: Sequelize.STRING
         },
         createdAt: {
           allowNull: false,
@@ -89,5 +115,6 @@ module.exports = {
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('User');
     await queryInterface.dropTable('Post');
+    await queryInterface.dropTable('NFT');
   }
 };

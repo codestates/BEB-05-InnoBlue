@@ -26,7 +26,7 @@ export default function MainPage() {
     useEffect(()=> {
         mainPage();
     }, []);
-    
+
     return <div>
         <Container className="panel">
             <center><h1>메인 페이지</h1></center>

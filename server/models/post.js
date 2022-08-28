@@ -13,12 +13,6 @@ module.exports = (sequelize, DataTypes) => {
     content: {
       type: DataTypes.STRING,
     },
-    p_count: {
-      type: DataTypes.INTEGER,
-    },
-    day: {
-      type: DataTypes.DATE,
-    }
   }, {
     charset: "utf8",
     collate: "utf8_general_ci", // 한글 저장

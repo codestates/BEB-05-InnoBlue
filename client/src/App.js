@@ -7,14 +7,15 @@ import Header from './components/Header';
 import MainPage from './pages/MainPage';
 import WritePage from './pages/WritePage';
 
-// import MyPage from './pages/MyPage';
+import MyPage from './pages/MyPage';
 // import DetailPage from './pages/DetailPage';
 import SignUpPage from './pages/SignUpPage';
 import LogInPage from './pages/LogInPage';
-import LogOutPage from './pages/LogOutPage';
-// import NFTmintPage from './pages/NFTmintPage';
+import NFTMintPage from './pages/NFTMintPage';
+
 // import NotFound from './pages/NotFound'; //optional
 // import Footer from './components/Footer'; //optional
+// import Home from "./components/Home";
 
 
 function App() {
@@ -41,12 +42,12 @@ function App() {
         <Container className="features">
           <Routes>
             <Route path = '/' element = {<MainPage isLogin={isLogin} />} />
-            <Route path = '/WritePage' element = {<WritePage isLogin={isLogin} />} />
+            <Route path = '/writepage' element = {<WritePage isLogin={isLogin} />} />
             {/* <Route path = '/mypage' element = {<MyPage />} /> */}
             {/* <Route path = '/detail/:id' element = {<DetailPage />} /> */}
             <Route path = '/signup' element = {<SignUpPage />} />
-            <Route path = '/Login' element = {<LogInPage isLogin={isLogin} />} />
-            {/*<Route path = '/LogOut' element = {<LogOutPage />} />*/}
+            <Route path = '/login' element = {<LogInPage isLogin={isLogin} />} />
+            <Route path = '/mint' element = {<NFTMintPage />} />
             {/* <Route path = '/nftmint' element = {<NFTmintPage />} /> */}
             {/* <Route path = '*' element = {<NotFound />} /> */}
           </Routes>

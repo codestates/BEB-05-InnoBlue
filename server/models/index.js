@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const User = require('./user');
 const Post = require('./post');
+const NFT = require('./nft');
 
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.js')[env];
@@ -14,5 +15,6 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
 db.sequelize = sequelize;
 db.User = User(sequelize, Sequelize.DataTypes);
 db.Post = Post(sequelize, Sequelize.DataTypes);
+db.NFT = NFT(sequelize, Sequelize.DataTypes);
 
 module.exports = db;

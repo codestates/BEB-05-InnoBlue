@@ -1,0 +1,28 @@
+.create-item-img {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+.create-item-info {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.create-input-label {
+    display: flex;
+}
+.create-upload-file {
+    display: flex;
+}
+
+.Mint_form {
+    background-color:slateblue;
+    font-family: ' Arial, Helvetica, sans-serif, Courier New', Courier, monospace,;
+    font-size: 1.4rem;
+    text-align: left;
+    color: white;
+    
+}

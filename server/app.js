@@ -50,7 +50,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-module.exports = controller.init_server().then(() => {
+module.exports = controller.init().then(() => {
   app.listen(port, () => {
       console.log(`      🚀 Server is starting on ${port}`);
     }

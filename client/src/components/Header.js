@@ -1,38 +1,83 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from "react";
+// import { Button } from "./Button";
 import "./styles/header.css";
 import { Link } from "react-router-dom";
 
-export default function Header(props) {
+function Header(props) {
+  const [click, setClick] = useState(false);
+  const [button, setButton] = useState(true);
+
+  const handleClick = () => setClick(!click);
+  const closeMobileMenu = () => setClick(false);
+
   const isLogin = props.isLogin;
 
   const onLogOut = () => {
     sessionStorage.removeItem("email");
-    document.location.href = '/'
+    window.location = '/';
   }
 
+  const showButton = () => {
+    if (window.innerWidth <= 960) {
+      setButton(false);
+    } else {
+      setButton(true);
+    }
+  };
+
+  useEffect(() => {
+    showButton();
+  }, []);
+
+  window.addEventListener("resize", showButton);
+
   return (
-    <header>
-      <nav className="Navbar-Link">
-        <Link to="DetailPage">Market</Link>
-        <Link to="NFTmintPage">NFTmint</Link>
-        <Link to="WritePage">Board</Link>
-
-        <Link to="/" className="Header-Logo">
-          🧿Blue Light
-        </Link>
-
-        <input
-          type="text"
-          size="30"
-          placeholder="Find the color you want"
-          className="Search-Input"
-        />
-
-        <Link to="/">Mypage</Link>
-        <Link to="/signup">Sign Up</Link>
-        {isLogin? <button onClick={onLogOut}>Logout </button> : <Link to="Login">login</Link>}
+    <>
+      <nav className="header">
+        <div className="header-container">
+          <Link to="/main" className="header-logo" onClick={closeMobileMenu}>
+            <strong style={{color: 'red'}}>Inno</strong><strong style={{color: 'blue'}}> Blue☁</strong>
+            <i className="fab fa-typo3" />
+          </Link>
+          <ul className={click ? "header-menu active" : "header-menu"}>
+            <li className="header-item">
+              <Link to="/mint" className="header-links" onClick={closeMobileMenu}>
+                NFT mint
+              </Link>
+            </li>
+            <li className="header-item">
+              <Link
+                to="../MainPage"
+                className="header-links"
+                onClick={handleClick}
+              >
+                NFT maket
+              </Link>
+            </li>
+            <li className="header-item">
+              <Link
+                to="/mypage"
+                className="header-links"
+                onClick={closeMobileMenu}
+              >
+                My page
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/signup"
+                className="header-links"
+                onClick={closeMobileMenu}
+              >
+                Sign Up
+              </Link>
+            </li>
+          </ul>
+          {isLogin? <button onClick={onLogOut}>Logout </button> : <Link to ="/login">LOG IN</ Link>}
+        </div>
       </nav>
-    </header>
+    </>
   );
 }
 
+export default Header;
