@@ -30,7 +30,7 @@ function LogIn(){
             setMessage(result.data.message);
             sessionStorage.setItem("email", email);
             //sessionStorage.setItem("nickname", nickname);
-            //window.location = '/';
+            window.location = '/';
         } catch (e) {
             setMessage(e.response.data);
         }
