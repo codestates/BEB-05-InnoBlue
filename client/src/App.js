@@ -1,4 +1,5 @@
 // import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
@@ -10,28 +11,42 @@ import WritePage from './pages/WritePage';
 // import DetailPage from './pages/DetailPage';
 import SignUpPage from './pages/SignUpPage';
 import LogInPage from './pages/LogInPage';
+import LogOutPage from './pages/LogOutPage';
 // import NFTmintPage from './pages/NFTmintPage';
 // import NotFound from './pages/NotFound'; //optional
 // import Footer from './components/Footer'; //optional
 
 
 function App() {
+  // 로그인 상태 관리
+  const [isLogin, setLogin] = useState(false);
+
+  useEffect(() => {
+    if(sessionStorage.getItem("email") === null ) { // sessiongStorge에 저장된 email 값이 없다면
+      console.log('isLogin ?? :: ', isLogin);
+    } else { // sessiongStorge에 저장된 email 값이 있다면
+      setLogin(true)
+      console.log('isLogin ?? :: ', isLogin);
+    }
+  })
+
   return (
     <BrowserRouter>
     <div className="App">
       <main>
       <header>
-        <Header/>
+        <Header  isLogin={isLogin} />
       </header>
       <section>
         <Container className="features">
           <Routes>
-            <Route path = '/' element = {<MainPage />} />
-            <Route path = '/WritePage' element = {<WritePage />} />
+            <Route path = '/' element = {<MainPage isLogin={isLogin} />} />
+            <Route path = '/WritePage' element = {<WritePage isLogin={isLogin} />} />
             {/* <Route path = '/mypage' element = {<MyPage />} /> */}
             {/* <Route path = '/detail/:id' element = {<DetailPage />} /> */}
             <Route path = '/signup' element = {<SignUpPage />} />
-            <Route path = '/Login' element = {<LogInPage />} />
+            <Route path = '/Login' element = {<LogInPage isLogin={isLogin} />} />
+            {/*<Route path = '/LogOut' element = {<LogOutPage />} />*/}
             {/* <Route path = '/nftmint' element = {<NFTmintPage />} /> */}
             {/* <Route path = '*' element = {<NotFound />} /> */}
           </Routes>

@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function LogIn(){
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const [userData, setUserData] = useState();
+    //const [nickname, setNickname] = useState();
+    const [loginData, setLoginData] = useState();
     const [message, setMessage] = useState();
     
     const logIn = async () => {
@@ -13,27 +14,36 @@ function LogIn(){
                 {
                     "email": email,
                     "password": password
-                }
+                },
+                {withCredentilas: true}
             )
             console.log(result);
-            setUserData(result.data.data);
+            setLoginData(result.data.data);
             setMessage(result.data.message);
+            setNickname(findNickname);
+            sessionStorage.setItem("email", email);
+            //sessionStorage.setItem("nickname", nickname);
+            window.location = '/';
         } catch (e) {
             setMessage(e.response.data);
         }
     }
+    
 
-    return userData ?
+    return loginData ?
         (
             <div className = "logInResult">
                 <p>
                     {message}
                 </p>
                 <p>
-                    회원 id: {userData.id}
+                    회원 id: {loginData.email}
                 </p>
                 <p>
-                    회원 지갑 주소: {userData.address}
+                    회원 지갑 주소: {loginData.address}
+                </p>
+                <p>
+                    {loginData.nickname} 님 환영합니다!
                 </p>
             </div>
         )
@@ -62,4 +72,5 @@ function LogIn(){
             </div>
         );
 }
+
 export default LogIn;
