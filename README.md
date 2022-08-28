@@ -7,13 +7,13 @@ beb-05-InnoBlue
 - 환경 변수 설정
 `server` 폴더 하위에 `.env.example`을 `.env`로 수정하고, 환경 변수들을 넣어준다.
 ```
-MYSQL_ROOT_PASSWORD=MYSQL_비밀번호
-SERVER_ADDRESS=가나슈_첫번째_계정_주소
-SERVER_NICKNAME=server
-SERVER_PASSWORD=server
-SERVER_PRIVATE_KEY=가나슈_첫번째_계정_비밀키
-TOKEN_CONTRACT_ADDR=가나슈_토큰_컨트랙트_배포_주소
-NFT_CONTRACT_ADDR=가나슈_NFT_컨트랙트_배포_주소
+MYSQL_ROOT_PASSWORD=your_mysql_password
+SERVER_ADDRESS=your_first_ganache_account_address
+SERVER_PRIVATE_KEY=your_first_ganache_account_private_key
+FAUCET_ADDRESS=your_second_ganache_account_address
+FAUCET_PRIVATE_KEY=your_second_ganache_account_private_key
+TOKEN_CONTRACT_ADDR=your_ganache_token_contract_address
+NFT_CONTRACT_ADDR=your_ganache_nft_contract_address
 ```
 
 - npm install 명령어로 모듈 설치
