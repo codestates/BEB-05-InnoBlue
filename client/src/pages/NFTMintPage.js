@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
-import "./styles/NFTmintPage.css";
+import "./styles/nftmintpage.css";
 import Form from 'react-bootstrap/Form';
 
 import Col from 'react-bootstrap/Col';
