@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import Button from 'react-bootstrap/Button';
+//import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
@@ -12,7 +12,8 @@ import './styles/signuppage.css';
 function LogIn(){
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const [userData, setUserData] = useState();
+    //const [nickname, setNickname] = useState();
+    const [loginData, setLoginData] = useState();
     const [message, setMessage] = useState();
     
     const logIn = async () => {
@@ -21,17 +22,22 @@ function LogIn(){
                 {
                     "email": email,
                     "password": password
-                }
+                },
+                {withCredentilas: true}
             )
             console.log(result);
-            setUserData(result.data.data);
+            setLoginData(result.data.data);
             setMessage(result.data.message);
+            sessionStorage.setItem("email", email);
+            //sessionStorage.setItem("nickname", nickname);
+            //window.location = '/';
         } catch (e) {
             setMessage(e.response.data);
         }
     }
+    
 
-    return userData ?
+    return loginData ?
         (
             <Container>
                 <div className = "logInResult">
@@ -51,11 +57,11 @@ function LogIn(){
                                     </tr>
                                     <tr>
                                     <td>회원 id:</td>
-                                    <td>{userData.id}</td>
+                                    <td>{loginData.email}</td>
                                     </tr>
                                     <tr>                                    
                                     <td>회원 지갑 주소:</td>
-                                    <td>{userData.address}</td>
+                                    <td>{loginData.address}</td>
                                     </tr>
                                 </tbody>
                             </Table>
@@ -94,9 +100,7 @@ function LogIn(){
                                         setPassword(e.target.value);
                                     }}/>
                                 </Form.Group>
-                                <center><Button className="l-2 m-3 rounded btn_form" variant="primary" type="submit" onClick={logIn}>
-                                    Log In
-                                </Button></center>
+                                <center><button onClick={logIn}>Log In</button></center>
                                 {message ? <>{message}</>: null}
                             </Form>
                         </Col>
@@ -104,8 +108,7 @@ function LogIn(){
                     </Row>
                 </div>    
             </Container>
-            
-            
         );
 }
+
 export default LogIn;

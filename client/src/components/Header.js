@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "./Button";
+// import { Button } from "./Button";
 import "./styles/header.css";
 import { Link } from "react-router-dom";
 
-function Header() {
+function Header(props) {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+
+  const isLogin = props.isLogin;
+
+  const onLogOut = () => {
+    sessionStorage.removeItem("email");
+    window.location = '/';
+  }
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -66,7 +73,7 @@ function Header() {
               </Link>
             </li>
           </ul>
-          {button && <Button buttonStyle="btn--outline">LOG IN</Button>}
+          {isLogin? <button onClick={onLogOut}>Logout </button> : <Link to ="/login">LOG IN</ Link>}
         </div>
       </nav>
     </>
