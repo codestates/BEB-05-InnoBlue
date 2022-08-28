@@ -1,18 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.0;
 
-interface ERC20Interface {
-    function totalSupply() external view returns (uint256);
-    function balanceOf(address account) external view returns (uint256);
-    function transfer(address recipient, uint256 amount) external returns (bool);
-    function approve(address spender, uint256 amount) external returns (bool);
-    function allowance(address owner, address spender) external view returns (uint256);
-    function transferFrom(address spender, address recipient, uint256 amount) external returns (bool);
-    
-    event Transfer(address indexed from, address indexed to, uint256 amount);
-    event Transfer(address indexed spender, address indexed from, address indexed to, uint256 amount);
-    event Approval(address indexed owner, address indexed spender, uint256 oldAmount, uint256 amount);
-}
+import "./interfaces/ERC20Interface.sol"; 
 
 contract ICToken is ERC20Interface {
     mapping (address => uint256) private _balances;
@@ -65,7 +54,8 @@ contract ICToken is ERC20Interface {
     // 이용시 반드시 Approval 이벤트 함수를 호출해야 함.
     function approve(address spender, uint amount) external virtual override returns (bool) {
         uint256 currentAllownace = _allowances[msg.sender][spender];
-        require(currentAllownace >= amount, "ERC20: Transfer amount exceeds allowance");
+        // 아래 한 줄은 잘못된 코드인듯
+        // require(currentAllownace >= amount, "ERC20: Transfer amount exceeds allowance");
         _approve(msg.sender, spender, currentAllownace, amount);
         return true;
     }
@@ -73,9 +63,9 @@ contract ICToken is ERC20Interface {
     function transferFrom(address sender, address recipient, uint256 amount) external virtual override returns (bool) {
         _transfer(sender, recipient, amount);
         emit Transfer(msg.sender, sender, recipient, amount);
-        uint256 currentAllowance = _allowances[sender][msg.sender];
+        uint256 currentAllowance = _allowances[sender][recipient];
         require(currentAllowance >= amount, "ERC20: transfer amount exceeds allowance");
-        _approve(sender, msg.sender, currentAllowance, currentAllowance - amount);
+        _approve(sender, recipient, currentAllowance, currentAllowance - amount);
         return true;
     }
     

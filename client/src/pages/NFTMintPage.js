@@ -4,14 +4,17 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import "./styles/nftmintpage.css";
 import Form from 'react-bootstrap/Form';
-
+import { NFTStorage } from "nft.storage/dist/bundle.esm.min.js";
+import Loading from '../components/Loading';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
+
 export default function NFTMintPage() {
     const [fileBlob, setFileBlob] = useState("")
-    const [title, setTile] = useState("")
+    const [title, setTitle] = useState("")
     const [isNotValidated, setIsNotValidated] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     const handleChangeImgSrc = (target) => {
         console.log(target.files[0])
@@ -19,16 +22,52 @@ export default function NFTMintPage() {
         setFileBlob(fileBlob)
     }
     const handleChangeTitle = (value) => {
-        setTile(value)
+        setTitle(value)
     }
     const mint = async () => {
-        if (fileBlob === "") setIsNotValidated(1)
-        else if (title === "") setIsNotValidated(2)
-        else setIsNotValidated(false)
+        if (fileBlob === "") {
+            setIsNotValidated(1)
+            return
+        } else if (title === "") {
+            setIsNotValidated(2)
+            return
+        } else {
+            setIsNotValidated(false)
+            setIsLoading(true)
+        }
+        try {
+            const data = {
+                image: fileBlob,
+                name: title,
+                description: "created from innoblue",
+                properties: {}
+            }
+            const nftStorageClient = new NFTStorage({ token: process.env.REACT_APP_NFT_STORAGE_API_KEY })
+            const metadata = await nftStorageClient.store(data)
+            const url = metadata.url.slice(7)
+            const tokenURI = `https://ipfs.io/ipfs/${url}`
+            console.log(tokenURI)
+            const email = sessionStorage.getItem("email")
+            const result = await axios.post('http://localhost:4000/token/mint',
+                {
+                    "email": email,
+                    "title": title,
+                    "tokenURI": tokenURI
+                },
+                {withCredentilas: true}
+            )
+            console.log(result);
+        }
+        catch (error) {
+            console.log(error)
+        }
+
+        setIsLoading(false)
     }
     return (
         <div>
             <Container className='Container_mint' >
+                {isLoading ? <Loading />: null}
                 <h1>Mint</h1>
                 <Row>
                     <Col></Col>

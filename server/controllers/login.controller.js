@@ -2,6 +2,7 @@ const { User } = require('../models');
 
 exports.user_login = async(req, res, next) => {
     const body = req.body;
+    console.log(body)
 
     const result = await User.findOne({
         where: {

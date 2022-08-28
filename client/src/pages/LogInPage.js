@@ -9,14 +9,15 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import './styles/signuppage.css';
 
-function LogIn(){
+function LogIn() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     //const [nickname, setNickname] = useState();
     const [loginData, setLoginData] = useState();
     const [message, setMessage] = useState();
     
-    const logIn = async () => {
+    const logIn = async (event) => {
+        event.preventDefault()
         try {
             const result = await axios.post('http://localhost:4000/user/login',
                 {
@@ -29,13 +30,22 @@ function LogIn(){
             setLoginData(result.data.data);
             setMessage(result.data.message);
             sessionStorage.setItem("email", email);
-            //sessionStorage.setItem("nickname", nickname);
+            sessionStorage.setItem("address", result.data.data.address);
             window.location = '/';
         } catch (e) {
+            console.log(e);
             setMessage(e.response.data);
         }
     }
     
+    useEffect(() => {
+        if (sessionStorage.getItem("email") != null ) {
+            setLoginData({
+                email: sessionStorage.getItem("email"),
+                address: sessionStorage.getItem("address")
+            })
+        }
+    }, [])
 
     return loginData ?
         (

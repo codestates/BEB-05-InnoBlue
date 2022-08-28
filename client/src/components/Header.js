@@ -35,7 +35,7 @@ function Header(props) {
     <>
       <nav className="header">
         <div className="header-container">
-          <Link to="/main" className="header-logo" onClick={closeMobileMenu}>
+          <Link to="/" className="header-logo" onClick={closeMobileMenu}>
             <strong style={{color: 'red'}}>Inno</strong><strong style={{color: 'blue'}}> Blue☁</strong>
             <i className="fab fa-typo3" />
           </Link>
