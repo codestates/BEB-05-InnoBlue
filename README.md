@@ -46,6 +46,26 @@ npx sequelize db:migrate
 npm start
 ```
 
+- DB/컨트랙트 재설정
+```
+# db
+docker stop mysql-container
+docker rm mysql-container
+docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=root -d -p 3306:3306 mysql:8
+docker exec -it mysql-container bash
+mysql -u root -p
+{패스워드 입력}
+create database InnoBlue
+# server 폴더에서
+npx sequelize db:migrate
+
+# contract (from truffle)
+compile --all
+migrate --reset
+# 필요시 abi 파일 변경
+# .env 파일의 컨트랙트 주소 변경
+```
+
 ## REST API
 
 ### 엔드포인트
