@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import main_img from './img/main_img.png';
 import axios from 'axios';
 import List from './List';
-import Pagination from './Pagination';
+// import Pagination from './Pagination';
 // import Write_page from './WritePage';
 
 export default function MainPage() {

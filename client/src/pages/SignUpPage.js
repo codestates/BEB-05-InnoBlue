@@ -16,8 +16,8 @@ function SignUp(){
     const [message, setMessage] = useState();
     const [isNotValidated, setIsNotValidated] = useState(false);
 
-    const signUp = async () => {
-      event.preventDefault()
+    const signUp = async (event) => {
+        event.preventDefault()
         if (email === "") {
             setIsNotValidated(1)
             return
