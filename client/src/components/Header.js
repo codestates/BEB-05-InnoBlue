@@ -47,11 +47,11 @@ function Header(props) {
             </li>
             <li className="header-item">
               <Link
-                to="../MainPage"
+                to="../market"
                 className="header-links"
                 onClick={handleClick}
               >
-                NFT maket
+                NFT market
               </Link>
             </li>
             <li className="header-item">
