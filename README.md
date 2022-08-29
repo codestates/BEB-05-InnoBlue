@@ -285,13 +285,7 @@ POST /token/token_transfer
 - Response
 ```
 200 SUCCESS
-{
-    "message": "토큰 전송이 완료되었습니다.",
-    "data": {
-        "id": "유저_이메일",
-        "token_amount": "토큰_양"
-    }
-}
+"토큰 전송이 완료되었습니다."
 
 400 FAIL
 "토큰 전송이 실패했습니다."
