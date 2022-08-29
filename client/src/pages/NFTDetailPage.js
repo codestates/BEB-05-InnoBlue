@@ -4,15 +4,15 @@ import { useEffect, useState } from "react";
 import './styles/nftdetail.css'
 
 
-function NFTDetail() {
+function NFTDetail(isLogin) {
     const { tokenId } = useParams();
     const [nft, setNFT] = useState(null);
-    // const tokenMetadata = useSelector((state) => state.token.tokens[tokenId]);
-    // const itemOnSaleMetadata = useSelector((state) => state.token.itemsOnSale[tokenId]);
     // const myTokenIds = useSelector((state) => state.token.myTokenIds);
     // const account = useSelector((state) => state.account.address);
-    const [price, setPrice] = useState("")
-    const [isNotValidated, setIsNotValidated] = useState(true)
+    const [price, setPrice] = useState("");
+    const [isNotValidated, setIsNotValidated] = useState(true);
+    const email = sessionStorage.getItem("email");
+
     useEffect(() => {
         async function metadata(){
             const result = await axios.get(`http://localhost:4000/token/metadata/${tokenId}`);
@@ -22,40 +22,33 @@ function NFTDetail() {
         }   
         metadata();
     }, []);
-    // useEffect(() => {
-    //     dispatch(tokenActions.fetchToken(tokenId));
-    //     if (account) {
-    //       dispatch(tokenActions.setMyTokenIds(account));
-    //       dispatch(tokenActions.fetchItemsOnSale());
-    //     }
-    // }, [account]);
 
-    // const buyNFT = () => {
-    //     if (account) {
-    //         dispatch(tokenActions.buyItemOnSale({itemId: itemOnSaleMetadata.itemId, myAddress: account, price: itemOnSaleMetadata.price}));
-    //     }
-    // };
+    const buyNFT = () => {
+        if (email) {
+            // dispatch(tokenActions.buyItemOnSale({itemId: itemOnSaleMetadata.itemId, myAddress: account, price: itemOnSaleMetadata.price}));
+        }
+    };
 
-    // const sellNFT = () => {
-    //     if (price === "") {
-    //         setIsNotValidated(1);
-    //         return;
-    //     }
-    //     else if (isNaN(price)) {
-    //         setIsNotValidated(2);
-    //         return;
-    //     }
-    //     setIsNotValidated(false);
-    //     dispatch(tokenActions.addItemOnSaleThunk({tokenId, myAddress: account, price: price}));
-    // };
+    const sellNFT = () => {
+        if (price === "") {
+            setIsNotValidated(1);
+            return;
+        }
+        else if (isNaN(price)) {
+            setIsNotValidated(2);
+            return;
+        }
+        setIsNotValidated(false);
+        // dispatch(tokenActions.addItemOnSaleThunk({tokenId, myAddress: account, price: price}));
+    };
 
-    // const cancelSale = () => {
-    //     dispatch(tokenActions.removeItemOnSaleThunk({myAddress: account, itemId: itemOnSaleMetadata.itemId}));
-    // };
+    const cancelSale = () => {
+        // dispatch(tokenActions.removeItemOnSaleThunk({myAddress: account, itemId: itemOnSaleMetadata.itemId}));
+    };
 
-    // const handleChangePrice = (value) => {
-    //     setPrice(value)
-    // }
+    const handleChangePrice = (value) => {
+        setPrice(value)
+    }
 
     return nft ? (        
         <div className="token-detail-page" >
@@ -78,12 +71,12 @@ function NFTDetail() {
                         <img width={10} src="https://static.opensea.io/general/ETH.svg" />
                      </label>
                 }
-                {/* {account && myTokenIds.includes(parseInt(tokenId)) ?
+                { !nft.on_sale && email==nft.email ?
                     <>
                         <label className="create-input-label">판매 가격*</label>
-                        <input type="text" className="goToList detail-btn" placeholder="Ether Price (ex. 0.5Eth => 0.5)" onChange={(e) => handleChangePrice(e.target.value)} />
+                        <input type="text" className="goToList detail-btn" placeholder="Token Price (ex. 0.5 Token => 0.5)" onChange={(e) => handleChangePrice(e.target.value)} />
                         <button className="buyNFT detail-btn" onClick={sellNFT}>판매하기</button>
-                        <Link to="/BEB-05-LeeSea/explore"><button className="goToList detail-btn">목록으로</button></Link>
+                        <Link to="/market"><button className="goToList detail-btn">목록으로</button></Link>
                         <div className={!isNotValidated ? "validation-content" : ""}>
                             {
                                 isNotValidated === 1
@@ -96,14 +89,14 @@ function NFTDetail() {
                         </div>
                     </>
                     : <>
-                        {itemOnSaleMetadata && account && itemOnSaleMetadata.seller == account ?
+                        { nft.on_sale && email==nft.email ?
                             <button className="buyNFT detail-btn" onClick={cancelSale}>판매취소</button>
-                            : (itemOnSaleMetadata?
+                            : (nft.on_sale?
                                 <button className="buyNFT detail-btn" onClick={buyNFT}>구매하기</button>
                                 : <button className="NotForSale detail-btn">판매 중이 아닙니다.</button>)}
-                        <Link to="/BEB-05-LeeSea/explore"><button className="goToList detail-btn">목록으로</button></Link>
+                        <Link to="/market"><button className="goToList detail-btn">목록으로</button></Link>
                     </>
-                } */}
+                }
             </div>
         </div>
     ): null;
