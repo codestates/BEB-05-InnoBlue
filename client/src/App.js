@@ -8,6 +8,7 @@ import MainPage from './pages/MainPage';
 import WritePage from './pages/WritePage';
 
 import MyPage from './pages/MyPage';
+import ReadPost from './pages/ReadPost';
 // import DetailPage from './pages/DetailPage';
 import SignUpPage from './pages/SignUpPage';
 import LogInPage from './pages/LogInPage';
@@ -47,6 +48,7 @@ function App() {
             <Route path = '/writepage' element = {<WritePage isLogin={isLogin} />} />
             {/* <Route path = '/mypage' element = {<MyPage />} /> */}
             {/* <Route path = '/detail/:id' element = {<DetailPage />} /> */}
+            <Route path = '/readpost/:id' element = {<ReadPost isLogin={isLogin} />} />
             <Route path = '/signup' element = {<SignUpPage />} />
             <Route path = '/login' element = {<LogInPage isLogin={isLogin} />} />
             <Route path = '/mint' element = {<NFTMintPage isLogin={isLogin}/>} />

@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import main_img from './img/main_img.png';
 import axios from 'axios';
 import List from './List';
+import Pagination from './Pagination';
 // import Write_page from './WritePage';
 
 export default function MainPage() {
@@ -43,10 +44,10 @@ export default function MainPage() {
                 </thead>
             </Table>
             {postlist && postlist.map((el) => {
-                    return (<List id={el.id} title={el.title} nickname={el.nickname} createdAt={el.createdAt} />)
+                    return (<List id={el.id} title={el.title} nickname={el.nickname} content={el.content} createdAt={el.createdAt} link={`/readpost/${el.id}`} />)
                 })}
             </div>
-            <Link to = "../WritePage">
+            <Link to = "/writepage">
             <center><Button className="mt-4 mb-3 p-3 btn-primary btn-lg">Go to Write Page</Button></center>
             </Link>
             <div className="noneDiv"><img src={main_img} width={"100%"} className="main_img" alt="Main pic"/></div>
