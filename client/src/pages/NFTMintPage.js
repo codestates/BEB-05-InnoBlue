@@ -10,7 +10,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 
-export default function NFTMintPage() {
+export default function NFTMintPage(isLogin) {
     const [fileBlob, setFileBlob] = useState("")
     const [title, setTitle] = useState("")
     const [isNotValidated, setIsNotValidated] = useState(false)
@@ -74,7 +74,7 @@ export default function NFTMintPage() {
                     <Col xs={8} className="Mint_form rounded">
                         <Form >
                             <Form.Group className="m-3 p-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label>이미지 업로드</Form.Label>
+                                <Form.Label>NFT 이미지 업로드</Form.Label>
                                 <Form.Control
                                 className="p-2"
                                 type="file"
@@ -83,7 +83,7 @@ export default function NFTMintPage() {
                                 placeholder="" />
                             </Form.Group>
                             <Form.Group className="m-3 p-3" controlId="exampleForm.ControlTextarea1">
-                                <Form.Label>아이템 이름*</Form.Label>
+                                <Form.Label>NFT 제목</Form.Label>
                                 <Form.Control 
                                 className="p-2"
                                 type="text"

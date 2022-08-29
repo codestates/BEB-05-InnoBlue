@@ -63,9 +63,9 @@ contract ICToken is ERC20Interface {
     function transferFrom(address sender, address recipient, uint256 amount) external virtual override returns (bool) {
         _transfer(sender, recipient, amount);
         emit Transfer(msg.sender, sender, recipient, amount);
-        uint256 currentAllowance = _allowances[sender][recipient];
+        uint256 currentAllowance = _allowances[sender][msg.sender];
         require(currentAllowance >= amount, "ERC20: transfer amount exceeds allowance");
-        _approve(sender, recipient, currentAllowance, currentAllowance - amount);
+        _approve(sender, msg.sender, currentAllowance, currentAllowance - amount);
         return true;
     }
     

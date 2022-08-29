@@ -1,4 +1,5 @@
 const { User, NFT } = require('../models');
+const axios = require("axios");
 const Web3 = require('web3');
 const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:7545'));
 const {
@@ -82,8 +83,7 @@ const tokenTransfer = async(req, res, next) => { // 게시글 작성
 }
 
 const mint = async (req, res, next) => {
-    console.log(req.body)
-
+    // console.log(req.body)
     const user = await User.findOne({
         where: {
             email: req.body.email
@@ -100,13 +100,10 @@ const mint = async (req, res, next) => {
         {from: process.env.SERVER_ADDRESS}
     );
 
-    const token_amount = await tokenContract.methods.balanceOf(user.address).call();
-    const wei_amount = await web3.eth.getBalance(user.address);
-    const eth_amount = Web3.utils.fromWei(wei_amount);
 
     // approve
     await web3.eth.personal.unlockAccount(user.address, user.password, 600);
-    const result_ = await tokenContract.methods.approve(process.env.SERVER_ADDRESS, 100).send();
+    const result_ = await tokenContract.methods.approve(process.env.NFT_CONTRACT_ADDR, 100).send();
     console.log(result_.events);
 
     // mint
@@ -121,18 +118,23 @@ const mint = async (req, res, next) => {
             gas: 1500000,
             gasPrice: '3000000'
         });
-    console.log(result.events.Transfer)
-
+    
     const tokenId = result.events.Transfer.returnValues.tokenId;
+    console.log(result.transactionHash);
     const nft_amount = await NFTContract.methods.balanceOf(user.address).call();
-    console.log(nft_amount);
+    const tx_hash = result.transactionHash;
+    const token_amount = await tokenContract.methods.balanceOf(user.address).call();
+    const wei_amount = await web3.eth.getBalance(user.address);
+    const eth_amount = Web3.utils.fromWei(wei_amount);
 
-    // await User.update({token_amount: token_amount, eth_amount: eth_amount}, {where: {address: user.address}});
+    await User.update({token_amount: token_amount, eth_amount: eth_amount}, {where: {address: user.address}});
     await NFT.create({
         userId: user.id,
         tokenId: tokenId,
         title: req.body.title,
-        tx_hash: req.body.tokenURI,
+        tx_hash: tx_hash,
+        tokenURI: req.body.tokenURI,
+        price: 1
     })
 
     res.status(201).json({
@@ -141,9 +143,48 @@ const mint = async (req, res, next) => {
     })
 }
 
+const metadata = async (req, res, next) => {
+    
+    const nft = await NFT.findOne({
+        where: {
+            tokenId: req.params.tokenId
+        }
+    });
+    console.log(nft);
+
+    if(nft){
+        const owner = await User.findOne({
+            where:{
+                id: nft.userId
+            }
+        })
+        const response = await axios.get(nft.tokenURI);
+        const tokenMetadata = response.data;
+        tokenMetadata.image = tokenMetadata.image.replace("ipfs://", "https://ipfs.io/ipfs/");
+        res.status(200).json({
+            ... tokenMetadata,
+            message: "nft 정보 조회 완료",
+            ownerId: owner.id,
+            email: owner.email,
+            nickname: owner.nickname,
+            price: nft.price,
+            on_sale: nft.on_sale,
+            createdAt: nft.createdAt
+        });
+    }else{
+        res.status(400).send("nft 정보 조회 실패");
+    }
+}
+
+const count = async(req, res, next)=>{
+    const amount = await NFT.count();
+    res.status(200).send(`${amount}`);    
+}
 module.exports = {
     tokenTransfer,
     faucet,
     _faucet,
-    mint
+    mint,
+    metadata,
+    count
 }

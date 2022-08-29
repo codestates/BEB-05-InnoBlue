@@ -12,6 +12,8 @@ import MyPage from './pages/MyPage';
 import SignUpPage from './pages/SignUpPage';
 import LogInPage from './pages/LogInPage';
 import NFTMintPage from './pages/NFTMintPage';
+import NFTMarketPage from './pages/NFTMarketPage';
+import NFTDetailPage from './pages/NFTDetailPage';
 
 // import NotFound from './pages/NotFound'; //optional
 // import Footer from './components/Footer'; //optional
@@ -47,8 +49,9 @@ function App() {
             {/* <Route path = '/detail/:id' element = {<DetailPage />} /> */}
             <Route path = '/signup' element = {<SignUpPage />} />
             <Route path = '/login' element = {<LogInPage isLogin={isLogin} />} />
-            <Route path = '/mint' element = {<NFTMintPage />} />
-            {/* <Route path = '/nftmint' element = {<NFTmintPage />} /> */}
+            <Route path = '/mint' element = {<NFTMintPage isLogin={isLogin}/>} />
+            <Route path = '/market' element = {<NFTMarketPage />} />
+            <Route path = '/nft/:tokenId' element = {<NFTDetailPage isLogin={isLogin}/>} />
             {/* <Route path = '*' element = {<NotFound />} /> */}
           </Routes>
         </Container>

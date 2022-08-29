@@ -48,3 +48,48 @@
   min-height: 300px;
 }
 
+.tokenlist {
+  padding: 40px;
+}
+.tokenlist .explore-title {
+  font-size: 4.8rem;
+  margin-bottom: 2rem;
+  font-family: "Amaranth", sans-serif;
+}
+.tokenlist .explore-description {
+  font-size: 2rem;
+  margin-bottom: 1.6rem;
+  font-family: "Amaranth", sans-serif;
+}
+.tokenlist .erc721List {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 0.8rem;
+}
+.tokenlist .erc721List .erc721token {
+  background-color: #ffffff;
+  box-shadow: 0 0.4rem 0.8rem 0.4rem rgba(235, 235, 235, 0.4);
+  border-radius: 0.4rem;
+  border: 1px solid rgba(220, 220, 220, 0.4);
+}
+.tokenlist .erc721List .erc721token .token-item {
+  display: flex;
+  flex-direction: column;
+  padding: 1.6rem;
+}
+.tokenlist .erc721List .erc721token .token-item img {
+  width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+  max-height: 24rem;
+  margin-bottom: 0.8rem;
+}
+.tokenlist .erc721List .erc721token .token-item .name {
+  font-size: 2.4rem;
+}
+.tokenlist .erc721List .erc721token .token-item .symbol {
+  font-size: 2rem;
+}
+.tokenlist .erc721List .erc721token .token-item .nft {
+  font-size: 1.6rem;
+}
