@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 // import { Button } from "./Button";
 import "./styles/header.css";
 import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 function Header(props) {
   const [click, setClick] = useState(false);
@@ -14,8 +15,8 @@ function Header(props) {
 
   const onLogOut = () => {
     sessionStorage.removeItem("email");
-    window.location = '/';
-  }
+    window.location = "/";
+  };
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -36,12 +37,17 @@ function Header(props) {
       <nav className="header">
         <div className="header-container">
           <Link to="/" className="header-logo" onClick={closeMobileMenu}>
-            <strong style={{color: 'red'}}>Inno</strong><strong style={{color: 'blue'}}> Blue☁</strong>
+            <strong style={{ color: "" }}>Inno</strong>
+            <strong style={{ color: "" }}> Blue☁</strong>
             <i className="fab fa-typo3" />
           </Link>
           <ul className={click ? "header-menu active" : "header-menu"}>
             <li className="header-item">
-              <Link to="/mint" className="header-links" onClick={closeMobileMenu}>
+              <Link
+                to="/mint"
+                className="header-links"
+                onClick={closeMobileMenu}
+              >
                 NFT mint
               </Link>
             </li>
@@ -73,7 +79,20 @@ function Header(props) {
               </Link>
             </li>
           </ul>
-          {isLogin? <button onClick={onLogOut}>Logout </button> : <Link to ="/login">LOG IN</ Link>}
+
+          {/* {isLogin? <button onClick={onLogOut}>Logout </button> : <Link to ="/login">LOG IN</ Link>}   */}
+
+          {isLogin ? (
+            <Button variant="light" onClick={onLogOut}>
+              LOGOUT{" "}
+            </Button>
+          ) : (
+            <Link to="/login">
+              <Button variant="light" className="p-2">
+                Log in
+              </Button>{" "}
+            </Link>
+          )}
         </div>
       </nav>
     </>
