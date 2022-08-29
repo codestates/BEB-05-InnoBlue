@@ -11,19 +11,19 @@ import Row from 'react-bootstrap/Row';
 
 
 export default function NFTMintPage(isLogin) {
-    const [fileBlob, setFileBlob] = useState("")
-    const [title, setTitle] = useState("")
-    const [isNotValidated, setIsNotValidated] = useState(false)
-    const [isLoading, setIsLoading] = useState(false)
+    const [fileBlob, setFileBlob] = useState("");
+    const [title, setTitle] = useState("");
+    const [isNotValidated, setIsNotValidated] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleChangeImgSrc = (target) => {
         console.log(target.files[0])
         const fileBlob = target.files[0]
         setFileBlob(fileBlob)
-    }
+    };
     const handleChangeTitle = (value) => {
         setTitle(value)
-    }
+    };
     const mint = async () => {
         if (fileBlob === "") {
             setIsNotValidated(1)
@@ -63,7 +63,7 @@ export default function NFTMintPage(isLogin) {
         }
 
         setIsLoading(false)
-    }
+    };
     return isLogin ? (
         <div>
             <Container className='Container_mint' >
