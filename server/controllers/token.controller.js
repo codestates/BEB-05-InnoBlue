@@ -102,7 +102,7 @@ const mint = async (req, res, next) => {
     // approve
     await web3.eth.personal.unlockAccount(user.address, user.password, 600);
     const result_ = await tokenContract.methods.approve(process.env.NFT_CONTRACT_ADDR, 100).send();
-    console.log(result_.events);
+    // console.log(result_.events);
 
     // mint
     const result = await NFTContract
@@ -148,7 +148,7 @@ const metadata = async (req, res, next) => {
             tokenId: req.params.tokenId
         }
     });
-    console.log(nft);
+    // console.log(nft);
 
     if(nft){
         const owner = await User.findOne({
@@ -197,10 +197,12 @@ const buyNFT = async(req, res, next) => {
         NFT_CONTRACT_ADDR,
         {from: owner.address}
     );
-    
+    let ownerADDR = await NFTContract.methods.ownerOf(req.body.tokenId).call();
+    console.log(ownerADDR);
     await web3.eth.personal.unlockAccount(owner.address, owner.password, 600);
     await NFTContract.methods.transferFrom(owner.address, user.address, req.body.tokenId).send();
-    await NFTContract.methods.ownerOf(req.body.tokenId).call();
+    ownerADDR = await NFTContract.methods.ownerOf(req.body.tokenId).call();
+    console.log(ownerADDR);
     const result = await NFT.update({userId: user.id, on_sale: false}, {where: {tokenId: req.body.tokenId}});
     if(result){
         res.status(200).send("nft 구매 완료");

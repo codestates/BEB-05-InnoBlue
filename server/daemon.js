@@ -23,7 +23,7 @@ const task = cron.schedule(
 	async () => {
 		// 주기적으로 실행하고자 하는 함수
 		// 예시
-		getLatestBlock()
+		getLatestBlock();
 	},
 	{
 		scheduled: false,
