@@ -46,7 +46,7 @@ function App() {
           <Routes>
             <Route path = '/' element = {<MainPage isLogin={isLogin} />} />
             <Route path = '/writepage' element = {<WritePage isLogin={isLogin} />} />
-            {/* <Route path = '/mypage' element = {<MyPage />} /> */}
+            <Route path = '/mypage' element = {<MyPage />} />
             {/* <Route path = '/detail/:id' element = {<DetailPage />} /> */}
             <Route path = '/readpost/:id' element = {<ReadPost isLogin={isLogin} />} />
             <Route path = '/signup' element = {<SignUpPage />} />
