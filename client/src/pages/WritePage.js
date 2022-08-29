@@ -71,7 +71,7 @@ export default function WritePage() {
                         }}
                         onChange={(event, editor) => {
                             const data = editor.getData();
-                            setContent(Parser(data));
+                            setContent(data);
                             console.log({ event, editor, data });
                         }}
                         onBlur={(event, editor) => {
