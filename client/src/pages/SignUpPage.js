@@ -14,8 +14,24 @@ function SignUp(){
     const [password, setPassword] = useState();
     const [userData, setUserData] = useState();
     const [message, setMessage] = useState();
-    
+    const [isNotValidated, setIsNotValidated] = useState(false);
+
     const signUp = async () => {
+        if (email === "") {
+            setIsNotValidated(1)
+            return
+        } else if (!email.includes("@")) {
+            setIsNotValidated(2)
+            return
+        } else if (nickname === "") {
+            setIsNotValidated(3)
+            return
+        } else if (password === "") {
+            setIsNotValidated(4)
+            return
+        } else {
+            setIsNotValidated(false)
+        }
         try {
             const result = await axios.post('http://localhost:4000/user/signup',
                 {
@@ -60,15 +76,6 @@ function SignUp(){
                                 </tr>
                             </tbody>
                         </Table>
-                            {/* <p>
-                                {message}
-                            </p>
-                            <p>
-                                회원 id: {userData.id}
-                            </p>
-                            <p>
-                                회원 지갑 주소: {userData.address}
-                            </p> */}
                         </Col>
                         <Col></Col>
                     </Row>
@@ -110,6 +117,19 @@ function SignUp(){
                         </Col>
                         <Col></Col>
                     </Row>
+                    {isNotValidated ?
+                        <div className="validation-content">
+                            {
+                                isNotValidated === 1
+                                    ? <p className="validation-text">이메일을 입력하세요.</p>
+                                    : (isNotValidated === 2 ?
+                                        <p className="validation-text">이메일 형태가 올바르지 않습니다.</p>
+                                        : (isNotValidated === 3 ?
+                                            <p className="validation-text">닉네임을 입력하세요.</p>
+                                            : <p className="validation-text">패스워드를 입력하세요.</p>))
+                            }
+                        </div>: null    
+                    }
                 </div>
             </Container>
         );
