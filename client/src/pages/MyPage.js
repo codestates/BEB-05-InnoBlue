@@ -1,4 +1,3 @@
-//     // const result = await axios.get(`http://localhost:4000/user/${userId}/info`);
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -18,7 +17,7 @@ export default function MyPage() {
     try {
       const result = await axios.get("http://localhost:4000/post/postlist");
       console.log(result);
-      setpostlist(result.data.data);
+      // setpostlist(result.data.data);
       //setnftlist(result.data.data);
     } catch (err) {
       console.log(err);

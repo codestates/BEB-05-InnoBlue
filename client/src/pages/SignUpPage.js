@@ -27,7 +27,7 @@ function SignUp(){
         } else if (nickname === "") {
             setIsNotValidated(3)
             return
-        } else if (password === "") {
+        } else if (!password) {
             setIsNotValidated(4)
             return
         } else {
