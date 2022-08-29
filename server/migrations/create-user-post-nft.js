@@ -101,6 +101,12 @@ module.exports = {
         tx_hash: {
           type: Sequelize.STRING
         },
+        tokenURI: {
+          type: Sequelize.STRING
+        },
+        price: {
+          type: Sequelize.INTEGER
+        },
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE

@@ -13,6 +13,12 @@ module.exports = (sequelize, DataTypes) => {
     tx_hash: {
       type: DataTypes.STRING,
     },
+    tokenURI: {
+      type: DataTypes.STRING,
+    },
+    price: {
+      type: DataTypes.INTEGER,
+    },
   }, {
     charset: "utf8",
     freezeTableName: true
