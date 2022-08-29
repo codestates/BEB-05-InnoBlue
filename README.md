@@ -276,7 +276,7 @@ POST /token/token_transfer
 - Request
 ```
 {
-    "id" : 유저_아이디,
+    "address" : 유저_계좌,
     "email" : "토큰_주고_싶은_유저_이메일",
     "amount" : 토큰_양
 }
