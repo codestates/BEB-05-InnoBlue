@@ -64,7 +64,7 @@ export default function NFTMintPage(isLogin) {
 
         setIsLoading(false)
     }
-    return (
+    return isLogin ? (
         <div>
             <Container className='Container_mint' >
                 {isLoading ? <Loading />: null}
@@ -97,16 +97,6 @@ export default function NFTMintPage(isLogin) {
                     
                 </Row>
                 
-                {/* <div>
-                    <div className="create-item-img">
-                        <label className="create-upload-file">이미지 업로드</label>
-                        <input className="create-upload-btn" type="file" accept="image/*" onChange={(e) => handleChangeImgSrc(e.target)} />
-                    </div>
-                    <div className="create-item-info">
-                        <label className="create-input-label">아이템 이름*</label>
-                        <input type="text" className="create-form-name" placeholder="Item Title" onChange={(e) => handleChangeTitle(e.target.value)} />
-                    </div>
-                </div> */}
                 
                 {isNotValidated ?
                     <div className="validation-content">
@@ -119,5 +109,5 @@ export default function NFTMintPage(isLogin) {
                 }
             </Container>
         </div>
-    )
+    ) : <div> <h4>로그인 하세요</h4></div>
 }

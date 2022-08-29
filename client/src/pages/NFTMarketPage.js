@@ -20,7 +20,7 @@ function NFTMarketPage(){
             <p className="explore-description">Discover, Buy, and Sell NFT art works.</p>
             <div className="erc721List">
                 {[...Array(totalSupply)].map((_, idx) => {
-                    const tokenId = idx + 2;
+                    const tokenId = idx + 1;
                     return(
                         <NFT tokenId={tokenId} key={tokenId}/>
                     )
