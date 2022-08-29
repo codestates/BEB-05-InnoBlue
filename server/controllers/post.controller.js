@@ -8,10 +8,17 @@ const {
 
 
 const postlist = async(req, res, next) => { // 게시글 전체 리스트
+    const pageNum = req.query.page;
+    const offset = 0;
+
+    if (pageNum > 1) {
+        offset = 5 * (pageNum - 1);
+    }
 
     const result = await Post.findAll({
-        order: [['id','ASC']],            // id기준 오름차순 정렬
-        limit:10,
+        offset: offset,
+        limit: 5,
+        order: [['createdAt','DESC']],         // 날짜 기준 내림차순 정렬
         raw: true  
     });
     if (!result) {
@@ -64,11 +71,11 @@ const writepost = async(req, res, next) => { // 게시글 작성
 }
 
 const readpost = async(req, res, next) => { // 게시글 조회
-    const body = req.body;
+    const params = req.params;
 
     const result = await Post.findOne({
         where: {
-            id: body.id
+            id: params.id
         }, raw: true
     });
     if (!result) {
@@ -84,7 +91,7 @@ const updatepost = async(req, res, next) => { // 게시글 수정
     const result = await Post.update({
         content: body.content},
         {where: {
-            id: body.id,
+            userId: body.userId,
         }
     });
     if (!result) {
@@ -99,7 +106,7 @@ const delpost = async(req, res, next) => { // 게시글 삭제
 
     const result = await Post.destroy({
         where: {
-            id: body.id,
+            userId: body.userId,
         }
     });
     if (!result) {

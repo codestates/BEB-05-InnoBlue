@@ -15,7 +15,8 @@ function SignUp(){
     const [userData, setUserData] = useState();
     const [message, setMessage] = useState();
     
-    const signUp = async () => {
+    const signUp = async (event) => {
+        event.preventDefault()
         try {
             const result = await axios.post('http://localhost:4000/user/signup',
                 {
