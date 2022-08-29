@@ -9,18 +9,17 @@ import { useState } from 'react';
 import DetailPage from './DetailPage';
 import axios from 'axios';
 
-// import Container from 'react-bootstrap/Container';
-// import Table from 'react-bootstrap/Table';
 
 export default function WritePage() {
-    const [userId, setUserId] = useState();
-    const [nickname, setNickname] = useState();
     const [title, setTitle] = useState();
     const [content, setContent] = useState();
     const [userData, setUserData] = useState();
     const [message, setMessage] = useState();
+    const nickname = sessionStorage.getItem("nickname");
+    const userId = sessionStorage.getItem("id");
 
-    const writePage = async () => {
+    const writePage = async (event) => {
+        event.preventDefault()
         try {
             const result = await axios.post('http://localhost:4000/post/writepost',
                 {
@@ -33,6 +32,7 @@ export default function WritePage() {
             console.log(result);
             setUserData(result.data.data);
             setMessage(result.data.message);
+            window.location = '/';
         } catch (e) {
             setMessage(e.response.data);
         }

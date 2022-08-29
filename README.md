@@ -276,7 +276,7 @@ POST /token/token_transfer
 - Request
 ```
 {
-    "id" : 유저_아이디,
+    "address" : 유저_계좌,
     "email" : "토큰_주고_싶은_유저_이메일",
     "amount" : 토큰_양
 }
@@ -285,13 +285,7 @@ POST /token/token_transfer
 - Response
 ```
 200 SUCCESS
-{
-    "message": "토큰 전송이 완료되었습니다.",
-    "data": {
-        "id": "유저_이메일",
-        "token_amount": "토큰_양"
-    }
-}
+"토큰 전송이 완료되었습니다."
 
 400 FAIL
 "토큰 전송이 실패했습니다."
@@ -343,4 +337,125 @@ GET /user/${userId}/userinfo
 
 400 FAIL
 "유저 정보 조회 실패"
+```
+
+### NFT 민팅 API
+```
+POST /token/mint
+```
+- Request
+```
+{
+    "email": "유저 이메일",
+    "title": "nft 제목",
+    "tokenURI": "tokenURI"
+}
+```
+- Response
+```
+201 SUCCESS
+{
+    message: "NFT 민팅 완료!",
+    data: { id: user.email, nft_amount: nft_amount},
+}
+```
+
+### 토큰 메타데이터 조회 API
+```
+GET /token/metadata/:tokenId
+```
+- Response
+```
+200 SUCCESS
+{
+    message: "nft 정보 조회 완료",
+    name: nft 제목,
+    image: nft 이미지 링크,
+    ownerId: owner.id,
+    email: owner.email,
+    nickname: owner.nickname,
+    price: nft.price,
+    on_sale: nft.on_sale,
+    createdAt: nft.createdAt
+}
+
+400 FAIL
+"nft 정보 조회 실패"
+```
+
+### DB에 저장된 NFT 갯수 조회 API
+```
+GET /token/count
+```
+- Response
+```
+200 SUCCESS
+nft갯수
+```
+
+### NFT 판매 API
+```
+POST /token/sell
+```
+
+- Request
+```
+{
+    "tokenId" : tokenId,
+    "price" : price
+}
+```
+
+- Response
+```
+200 SUCCESS
+"nft 판매 등록 완료"
+
+400 FAIL
+"nft 판매 등록 에러 발생"
+```
+
+### NFT 판매 취소 API
+```
+POST /token/cancel
+```
+
+- Request
+```
+{
+    "tokenId" : tokenId
+}
+```
+
+- Response
+```
+200 SUCCESS
+"nft 판매 취소 완료"
+
+400 FAIL
+"nft 판매 취소 에러 발생"
+```
+
+### NFT 구매 API
+```
+POST /token/buy
+```
+
+- Request
+```
+{
+    "tokenId" : tokenId,
+    "price" : price,
+    "address" : address,
+    "owner": nft.email  
+}
+```
+
+- Response
+```
+200 SUCCESS
+"nft 구매 완료"
+
+400 FAIL
+"nft 구매 에러 발생"
 ```

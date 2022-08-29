@@ -17,6 +17,7 @@ function SignUp(){
     const [isNotValidated, setIsNotValidated] = useState(false);
 
     const signUp = async () => {
+      event.preventDefault()
         if (email === "") {
             setIsNotValidated(1)
             return
@@ -32,6 +33,7 @@ function SignUp(){
         } else {
             setIsNotValidated(false)
         }
+
         try {
             const result = await axios.post('http://localhost:4000/user/signup',
                 {

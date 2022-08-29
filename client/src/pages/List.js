@@ -1,9 +1,12 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
-export default function List ({ id, title, nickname, createdAt }) {
+import { Link } from "react-router-dom";
+
+export default function List ({ id, title, nickname, createdAt, link }) {
     return (
-        <Table striped bordered hover className="mt-5" >
+        <Link to={link}>
+            <Table striped bordered hover className="mt-5" >
             <tbody>
                 <tr>
                     <td>{id}</td>
@@ -13,5 +16,6 @@ export default function List ({ id, title, nickname, createdAt }) {
                 </tr>
             </tbody>
         </Table>
+        </Link>
     )
 }
