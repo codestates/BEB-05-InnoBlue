@@ -1,13 +1,17 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false, // NOT NULL 인지 아닌지, false인 경우 값이 필수 (default: true)
       validate: {
         isEmail: true
-      },
-      primaryKey: true  // 기본키인지 아닌지 (default: false)
+      }
     },
     nickname: {
       type: DataTypes.STRING,

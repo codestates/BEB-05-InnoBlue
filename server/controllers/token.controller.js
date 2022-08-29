@@ -82,11 +82,6 @@ const tokenTransfer = async(req, res, next) => { // 게시글 작성
 }
 
 const mint = async (req, res, next) => {
-    // nickname, tokenURL 받아오기
-    // 락 해제
-    // 컨트랙트 객체 생성 erc20, erc721 둘 다
-    // 토큰 양 설정
-    // 서버 계정으로 민팅
     console.log(req.body)
 
     const user = await User.findOne({
@@ -105,12 +100,9 @@ const mint = async (req, res, next) => {
         {from: process.env.SERVER_ADDRESS}
     );
 
-    const price = 5;
-    
     const token_amount = await tokenContract.methods.balanceOf(user.address).call();
     const wei_amount = await web3.eth.getBalance(user.address);
     const eth_amount = Web3.utils.fromWei(wei_amount);
-    // const tx_hash = await ;
 
     // approve
     await web3.eth.personal.unlockAccount(user.address, user.password, 600);
@@ -132,21 +124,20 @@ const mint = async (req, res, next) => {
     console.log(result.events.Transfer)
 
     const tokenId = result.events.Transfer.returnValues.tokenId;
-
-    // const nft_amount = await NFTContract.methods.balanceOf(user.address).call();
-    // console.log(nft_amount);
+    const nft_amount = await NFTContract.methods.balanceOf(user.address).call();
+    console.log(nft_amount);
 
     // await User.update({token_amount: token_amount, eth_amount: eth_amount}, {where: {address: user.address}});
     await NFT.create({
         userId: user.id,
         tokenId: tokenId,
         title: req.body.title,
-        tx_hash: tx_hash,
+        tx_hash: req.body.tokenURI,
     })
 
     res.status(201).json({
-        message: "게시글 작성 완료! 토큰 보상이 지급되었습니다.",
-        data: { id: user.email, token_amount: token_amount},
+        message: "NFT 민팅 완료!",
+        data: { id: user.email, nft_amount: nft_amount},
     })
 }
 
