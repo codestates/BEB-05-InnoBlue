@@ -30,35 +30,18 @@ const faucet = async(req, res, next) => {
 
     const to = user.address;
     const result = await _faucet(to);
-    const wei_amount = await web3.eth.getBalance(to);
-    const eth_amount = await web3.utils.fromWei(wei_amount);
 
     if(result){
         res.status(201).json({
             message: "이더리움 지급 완료!",
-            data: { address: user.address, eth_amount: eth_amount},
+            data: { address: user.address, eth_amount: user.eth_amount},
         })
     }else{
         res.status(400).send("이더리움 지급 에러 발생")
     }
 }
 
-const tokenTransfer = async(req, res, next) => { // 게시글 작성
-    const user = await User.findOne({
-        where: {
-            id: req.body.id
-        }
-    })
-
-    const receiver = await User.findOne({
-        where: {
-            email: req.body.email
-        }
-    })
-
-    const to = receiver.address;
-    const amount = req.body.amount;
-
+const _tokenTransfer = async(user, to, amount) => {
     const tokenContract = await new web3.eth.Contract(
         TOKEN_CONTRACT_ABI,
         TOKEN_CONTRACT_ADDR,
@@ -70,13 +53,28 @@ const tokenTransfer = async(req, res, next) => { // 게시글 작성
     const token_amount = await tokenContract.methods.balanceOf(user.address).call();
     const receiver_token_amount = await tokenContract.methods.balanceOf(to).call();
 
+    await User.update({token_amount: receiver_token_amount}, {where: {address: to}});
     await User.update({token_amount: token_amount}, {where: {address: user.address}});
-    const result = await User.update({token_amount: receiver_token_amount}, {where: {address: to}});
+    return token_amount;
+};
+
+const tokenTransfer = async(req, res, next) => { // 게시글 작성
+    const user = await User.findOne({
+        where: {
+            address: req.body.address
+        }
+    });
+    const receiver = await User.findOne({
+        where: {
+            email: req.body.email
+        }
+    });
+    const amount = req.body.amount;
+    const to = receiver.address;    
+
+    const result = _tokenTransfer(user, to, amount);
     if(result){
-        res.status(200).json({
-            message: "토큰 전송이 완료되었습니다.",
-            data: { id: user.email, token_amount: token_amount},
-        });
+        res.status(200).send("토큰 전송이 완료되었습니다.");
     } else{
         res.status(400).send("토큰 전송이 실패했습니다.");
     }
@@ -180,11 +178,64 @@ const count = async(req, res, next)=>{
     const amount = await NFT.count();
     res.status(200).send(`${amount}`);    
 }
+
+const buyNFT = async(req, res, next) => {
+    const user = await User.findOne({
+        where: {
+            address: req.body.address
+        }
+    })
+    const owner = await User.findOne({
+        where: {
+            email: req.body.owner
+        }
+    })
+    await _tokenTransfer(user, owner.address, req.body.price);
+
+    const NFTContract = await new web3.eth.Contract(
+        NFT_CONTRACT_ABI,
+        NFT_CONTRACT_ADDR,
+        {from: owner.address}
+    );
+    
+    await web3.eth.personal.unlockAccount(owner.address, owner.password, 600);
+    await NFTContract.methods.transferFrom(owner.address, user.address, req.body.tokenId).send();
+    await NFTContract.methods.ownerOf(req.body.tokenId).call();
+    const result = await NFT.update({userId: user.id, on_sale: false}, {where: {tokenId: req.body.tokenId}});
+    if(result){
+        res.status(200).send("nft 구매 완료");
+    } else{
+        res.status(400).send("nft 구매 에러 발생");
+    }
+}
+
+const sellNFT = async(req, res, next) => {
+    const result = await NFT.update({on_sale: true, price: req.body.price}, {where: {tokenId: req.body.tokenId}});
+    if(result){
+        res.status(200).send("nft 판매 등록 완료");
+    } else{
+        res.status(400).send("nft 판매 등록 에러 발생");
+    }
+}
+
+const cancelSale = async(req, res, next) => {
+    const result = await NFT.update({on_sale: false}, {where: {tokenId: req.body.tokenId}});
+    if(result){
+        res.status(200).send("nft 판매 취소 완료");
+    } else{
+        res.status(400).send("nft 판매 취소 에러 발생");
+    }
+}
+
 module.exports = {
     tokenTransfer,
     faucet,
     _faucet,
     mint,
     metadata,
-    count
+    count,
+    sellNFT,
+    buyNFT,
+    cancelSale,
+    _tokenTransfer
 }
