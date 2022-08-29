@@ -10,7 +10,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 
-export default function NFTMintPage() {
+export default function NFTMintPage(isLogin) {
     const [fileBlob, setFileBlob] = useState("")
     const [title, setTitle] = useState("")
     const [isNotValidated, setIsNotValidated] = useState(false)

@@ -168,6 +168,7 @@ const metadata = async (req, res, next) => {
             email: owner.email,
             nickname: owner.nickname,
             price: nft.price,
+            on_sale: nft.on_sale,
             createdAt: nft.createdAt
         });
     }else{
@@ -175,10 +176,15 @@ const metadata = async (req, res, next) => {
     }
 }
 
+const count = async(req, res, next)=>{
+    const amount = await NFT.count();
+    res.status(200).send(`${amount}`);    
+}
 module.exports = {
     tokenTransfer,
     faucet,
     _faucet,
     mint,
-    metadata
+    metadata,
+    count
 }

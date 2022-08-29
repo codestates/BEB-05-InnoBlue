@@ -49,9 +49,9 @@ function App() {
             {/* <Route path = '/detail/:id' element = {<DetailPage />} /> */}
             <Route path = '/signup' element = {<SignUpPage />} />
             <Route path = '/login' element = {<LogInPage isLogin={isLogin} />} />
-            <Route path = '/mint' element = {<NFTMintPage />} />
+            <Route path = '/mint' element = {<NFTMintPage isLogin={isLogin}/>} />
             <Route path = '/market' element = {<NFTMarketPage />} />
-            <Route path = '/nft/:tokenId' element = {<NFTDetailPage />} />
+            <Route path = '/nft/:tokenId' element = {<NFTDetailPage isLogin={isLogin}/>} />
             {/* <Route path = '*' element = {<NotFound />} /> */}
           </Routes>
         </Container>

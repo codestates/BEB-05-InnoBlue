@@ -107,6 +107,10 @@ module.exports = {
         price: {
           type: Sequelize.INTEGER
         },
+        on_sale: {
+          type: Sequelize.BOOLEAN,
+          defaultValue: false
+        },
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE
@@ -114,7 +118,7 @@ module.exports = {
         updatedAt: {
           allowNull: false,
           type: Sequelize.DATE
-        }
+        },
       });
     })
   },

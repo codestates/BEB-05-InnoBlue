@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
     price: {
       type: DataTypes.INTEGER,
     },
+    on_sale: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
   }, {
     charset: "utf8",
     freezeTableName: true

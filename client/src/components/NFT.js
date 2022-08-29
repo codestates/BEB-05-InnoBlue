@@ -5,16 +5,17 @@ import './styles/nft.css';
 
 
 function NFT({ tokenId }) {
-    const [nft, setNFT] = useState(null)
+    const [nft, setNFT] = useState(null);
     useEffect(() => {
-        const result = axios.get('http://localhost:4000/token/metadata', {
-            params: {
-                tokenId: tokenId
-            }
-        });
-        setNFT(result);
-    }, [])
-
+        async function metadata(){
+            const result = await axios.get(`http://localhost:4000/token/metadata/${tokenId}`);
+            console.log(result.data);
+            console.log(tokenId);
+            setNFT(result.data);
+        }   
+        metadata();
+    }, []);
+    
     return nft ? (
         <div className="erc721token">
             <Link to={`/nft/${tokenId}`}className="token-item">
@@ -23,14 +24,16 @@ function NFT({ tokenId }) {
                     width={300}
                     className='token-thumb'/>
                 <h4 className="name">{nft.name}</h4>
-                {/* {isItemOnSale()? <div className="price"> */}
+                {nft.on_sale ? <div className="price">
                     <div className="price-img">
                         <img width={10} src="https://static.opensea.io/general/ETH.svg" />
                     </div>
                     <div className="price-text">
                         {nft.price}
                     </div>
-                {/* </div> : null} */}
+                </div> : <div className="price-text">
+                        not for sale
+                    </div>}
             </Link>
         </div>
     ): null;

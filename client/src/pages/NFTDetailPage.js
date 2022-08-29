@@ -6,7 +6,7 @@ import './styles/nftdetail.css'
 
 function NFTDetail() {
     const { tokenId } = useParams();
-    const [tokenMetadata, setTokenMetadata] = useState(null);
+    const [nft, setNFT] = useState(null);
     // const tokenMetadata = useSelector((state) => state.token.tokens[tokenId]);
     // const itemOnSaleMetadata = useSelector((state) => state.token.itemsOnSale[tokenId]);
     // const myTokenIds = useSelector((state) => state.token.myTokenIds);
@@ -14,13 +14,14 @@ function NFTDetail() {
     const [price, setPrice] = useState("")
     const [isNotValidated, setIsNotValidated] = useState(true)
     useEffect(() => {
-        const result = axios.get('http://localhost:4000/token/metadata', {
-            params: {
-                tokenId: tokenId
-            }
-        });
-        setTokenMetadata(result);
-    }, [])
+        async function metadata(){
+            const result = await axios.get(`http://localhost:4000/token/metadata/${tokenId}`);
+            console.log(result.data);
+            console.log(tokenId);
+            setNFT(result.data);
+        }   
+        metadata();
+    }, []);
     // useEffect(() => {
     //     dispatch(tokenActions.fetchToken(tokenId));
     //     if (account) {
@@ -56,28 +57,27 @@ function NFTDetail() {
     //     setPrice(value)
     // }
 
-    return tokenMetadata ? (        
+    return nft ? (        
         <div className="token-detail-page" >
-            <img src={tokenMetadata.image} alt="" className="tokenDetailThumb" />
+            <img src={nft.image} alt="" className="tokenDetailThumb" />
             <div className="tokenInfoArea">
-                <h3 className="tokenName">{tokenMetadata.name}</h3>
+                <h3 className="tokenName">{nft.name}</h3>
                 <div className="tokenDescArea">
                     <h4 className="tokenDesc">Owner</h4>
                     <p className="tokenDescBody owner">
-                    {/* {itemOnSaleMetadata ?
-                        itemOnSaleMetadata.seller : tokenMetadata.owner
-                    } */}
+                    {nft.owner}
                     </p>
-                    <h4 className="tokenDesc">Description</h4>
-                    <p className="tokenDescBody">{tokenMetadata.description}</p>
                 </div>
-                {/* {itemOnSaleMetadata ? 
+                {nft.on_sale ? 
                     <label className="create-input-label">
-                        가격: {itemOnSaleMetadata.price}
+                        판매 가격: {nft.price}
                         <img width={10} src="https://static.opensea.io/general/ETH.svg" />
                     </label>
-                    : null
-                } */}
+                    : <label className="create-input-label">
+                        최근 거래 가격: {nft.price}
+                        <img width={10} src="https://static.opensea.io/general/ETH.svg" />
+                     </label>
+                }
                 {/* {account && myTokenIds.includes(parseInt(tokenId)) ?
                     <>
                         <label className="create-input-label">판매 가격*</label>
