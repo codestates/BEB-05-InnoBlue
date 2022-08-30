@@ -320,7 +320,7 @@ POST /token/faucet
 
 ### 특정 유저 정보 조회 API
 ```
-GET /user/${userId}/userinfo
+GET /user/userinfo/${userId}
 ```
 - Response
 ```

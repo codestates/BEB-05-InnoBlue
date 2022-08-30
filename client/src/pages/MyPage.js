@@ -6,19 +6,17 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import List from "./List";
-// import MyList from "./MyList";
 import "./styles/mypage.css";
 
 export default function MyPage() {
-  const [postlist, setpostlist] = useState();
-  //  const [nftlist, setnftlist] = useState();
+  const userId = sessionStorage.getItem("id");
+  const [user, setUser] = useState();
 
   const mypage = async () => {
     try {
-      const result = await axios.get("http://localhost:4000/post/postlist");
-      console.log(result);
-      // setpostlist(result.data.data);
-      //setnftlist(result.data.data);
+      const result = await axios.get(`http://localhost:4000/user/userinfo/${userId}`);
+      setUser(result.data);
+      console.log(result.data);
     } catch (err) {
       console.log(err);
     }
@@ -38,30 +36,36 @@ export default function MyPage() {
           <Table striped bordered hover className="mt-5">
             <thead>
               <tr>
-                <th>🔵닉네임</th>
+                <th>🧢유저 계정</th>
                 <th>
-                  <th>
-                    {postlist &&
-                      postlist.map((el) => {
-                        return <List title={el.title} />;
-                      })}
-                  </th>
+                  {user.email}
                 </th>
               </tr>
               <tr>
-                <th>📦지갑주소</th>
+                <th>🔵닉네임</th>
+                <th>
+                  {user.nickname}
+                </th>
+              </tr>
+              <tr>
+                <th>💳지갑주소</th>
+                <th>{user.address}</th>
+              </tr>
+              <tr>
+                <th>🪙이노블루 토큰 개수</th>
+                <th>{user.token_amount} INB</th>
+              </tr>
+              <tr>
+                <th>🧊이더리움 토큰 개수</th>
+                <th>{user.eth_amount} ETH</th>
               </tr>
               <tr>
                 <th>🖼나의 NFT</th>
-                <th></th>
+                <th>coming soon</th>
               </tr>
               <tr>
                 <th>📄나의 게시글</th>
-                <th></th>
-              </tr>
-              <tr>
-                <th>🪙토큰 개수</th>
-                <th></th>
+                <th>coming soon</th>
               </tr>
             </thead>
           </Table>
