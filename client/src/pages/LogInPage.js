@@ -12,7 +12,6 @@ import './styles/signuppage.css';
 function LogIn() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    //const [nickname, setNickname] = useState();
     const [loginData, setLoginData] = useState();
     const [message, setMessage] = useState();
     
@@ -31,6 +30,7 @@ function LogIn() {
             setMessage(result.data.message);
             sessionStorage.setItem("email", email);
             sessionStorage.setItem("address", result.data.data.address);
+            sessionStorage.setItem("nickname", result.data.data.nickname);
             window.location = '/';
         } catch (e) {
             console.log(e);
@@ -42,7 +42,8 @@ function LogIn() {
         if (sessionStorage.getItem("email") != null ) {
             setLoginData({
                 email: sessionStorage.getItem("email"),
-                address: sessionStorage.getItem("address")
+                address: sessionStorage.getItem("address"),
+                nickname: sessionStorage.getItem("nickname")
             })
         }
     }, [])
