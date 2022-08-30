@@ -116,12 +116,12 @@ function Header(props) {
           </ul>
 
           {isLogin ? (
-            <Button variant="light" onClick={onLogOut}>
-              LOGOUT{" "}
+            <Button variant="outline-warning" onClick={onLogOut}>
+              Log out{" "}
             </Button>
           ) : (
             <Link to="/login">
-              <Button variant="light" className="p-2">
+              <Button variant="outline-warning" className="p-2">
                 Log in
               </Button>{" "}
             </Link>

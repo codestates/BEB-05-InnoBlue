@@ -116,21 +116,21 @@ function LogIn() {
                                         setPassword(e.target.value);
                                     }}/>
                                 </Form.Group>
-                                <center><Button className="l-2 m-3 rounded btn_form" variant="primary" type="submit" onClick={logIn}>
-                                    Log In
+                                <center><Button className="l-2 m-3 rounded btn_form" variant="outline-warning" type="submit" onClick={logIn}>
+                                 Log in
                                 </Button></center>
                                 {message ? <>{message}</>: null}
                             </Form>
                             </div>
                             <div className="btn_form_1">
                                 <Link to = "/signup">
-                                    <span className="sign_up_line">If your desire to<strong style={{color:'gray'}}> sign in</strong>, please click!!</span><br/>
-                                </Link>
+                                    <span className="sign_up_line"><h6>If you want to join us, click here</h6></span><br/>
+                             </Link>
                             </div>
 
                             <div className="btn_form_1">
                                 <Link to = "/forgot">
-                                    <span className="sign_up_line">forgot passward?</span>                                    
+                                    <span className="sign_up_line"><h6>forgot passward?</h6></span>                                    
                                 </Link>                               
                             </div>
                         </Col>
