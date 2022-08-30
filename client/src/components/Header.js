@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import { Button } from "./Button";
 import "./styles/header.css";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
@@ -18,8 +17,6 @@ function Header(props) {
     }
   }
   const closeMobileMenu = () => setClick(false);
-
-
   
   const onLogOut = () => {
     sessionStorage.removeItem("email");
