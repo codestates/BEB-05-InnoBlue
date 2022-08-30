@@ -46,11 +46,11 @@ export default function MyPage() {
                 <th>{user.address}</th>
               </tr>
               <tr>
-                <th>🪙이노블루 토큰 개수</th>
+                <th>🫐이노블루 토큰 개수</th>
                 <th>{user.token_amount} INB</th>
               </tr>
               <tr>
-                <th>🧊이더리움 토큰 개수</th>
+                <th>🪙이더리움 토큰 개수</th>
                 <th>{user.eth_amount} ETH</th>
               </tr>
               <tr>
@@ -58,14 +58,12 @@ export default function MyPage() {
                 <th>{user.nft_count}</th>
               </tr>
               <tr>
-                <th>🖼나의 NFT</th>
+                <th>🟦나의 NFT</th>
                 <th>
                 <div className = "tokenlist">
                 <div className="erc721List">
-                  {user.nft.map( nft =>{
-                  return(
-                    <NFT tokenId={nft.tokenId} key={nft.tokenId}/>
-                )
+                  {user.nft.map((nft) =>{
+                  return <NFT tokenId={nft.tokenId} key={nft.tokenId}/>
                 })}
                 </div> </div>
                 </th>
@@ -73,6 +71,12 @@ export default function MyPage() {
               <tr>
                 <th>📄나의 게시글 개수</th>
                 <th>{user.post_count}</th>
+              </tr>
+              <tr>
+                <th>📄나의 게시글</th>
+                <th>{user.post.map((post) => {
+                  return <List title = {post.title} link={`/readpost/${post.id}`}/>
+                })}</th>
               </tr>
             </thead>
           </Table>
