@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
@@ -92,6 +92,7 @@ function LogIn() {
                     <Row>
                         <Col></Col>
                         <Col className="Signup_form rounded">
+                            <div>
                             <Form>
                                 <Form.Group className="m-3" controlId="formBasicEmail">
                                     <Form.Label>Email address</Form.Label>
@@ -120,6 +121,18 @@ function LogIn() {
                                 </Button></center>
                                 {message ? <>{message}</>: null}
                             </Form>
+                            </div>
+                            <div className="btn_form_1">
+                                <Link to = "/signup">
+                                    <span className="sign_up_line">If your desire to<strong style={{color:'gray'}}> sign in</strong>, please click!!</span><br/>
+                                </Link>
+                            </div>
+
+                            <div className="btn_form_1">
+                                <Link to = "/forgot">
+                                    <span className="sign_up_line">forgot passward?</span>                                    
+                                </Link>                               
+                            </div>
                         </Col>
                         <Col></Col>
                     </Row>

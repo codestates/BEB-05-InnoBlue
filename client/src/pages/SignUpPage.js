@@ -113,7 +113,9 @@ function SignUp(){
                                     <Form.Control className="p-2" type="password" placeholder="Type your password" onChange ={(e)=> {
                                     setPassword(e.target.value)}}/>
                                 </Form.Group>
-
+                                <Form.Group className="m-3" controlId="formBasicCheckbox">
+                                    <Form.Check type="checkbox" label="Agree or disagree the Privacy Policy and the Terms of Use." />
+                                </Form.Group>
                                 <center><Button className="l-2 m-3 rounded btn_form" variant="primary" type="submit" onClick={signUp}>
                                     Sign Up
                                 </Button></center>
