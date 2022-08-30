@@ -66,7 +66,7 @@ function NFTDetail(isLogin) {
         {
             "tokenId" : tokenId,
         });
-        alert('구매 취소 !');
+        alert('판매 취소 !');
         await fetchMetadata();
     };
 
