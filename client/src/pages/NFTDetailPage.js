@@ -38,6 +38,7 @@ function NFTDetail(isLogin) {
                 "owner": nft.email              
             });
         }
+        alert('구매 성공!');
         await fetchMetadata();
     };
 
@@ -55,6 +56,7 @@ function NFTDetail(isLogin) {
             "tokenId" : tokenId,
             "price" : price
         });
+        alert('구매 완료!');
         setIsNotValidated(false);
         await fetchMetadata();
     };
@@ -64,6 +66,7 @@ function NFTDetail(isLogin) {
         {
             "tokenId" : tokenId,
         });
+        alert('구매 취소 !');
         await fetchMetadata();
     };
 
