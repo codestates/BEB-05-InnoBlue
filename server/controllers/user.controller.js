@@ -1,4 +1,4 @@
-const {User} = require('../models');
+const {User, NFT, Post} = require('../models');
 const Web3 = require('web3');
 const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:7545'));
 const tokenController = require("./token.controller");
@@ -44,6 +44,21 @@ const userinfo = async(req, res, next) => {
         }
     });
 
+    const nft = await NFT.findAll({
+        where: {
+            userId: req.params.userId
+        }
+    })
+    const nft_count = nft.length;
+    console.log(nft_count);
+    const post = await Post.findAll({
+        where: {
+            userId: req.params.userId
+        }
+    })
+    const post_count = post.length;
+    console.log(post_count);
+
     if(user){
         res.status(200).json({
             message: "유저 정보 조회 완료",
@@ -53,7 +68,11 @@ const userinfo = async(req, res, next) => {
             address: user.address,
             token_amount: user.token_amount,
             eth_amount: user.eth_amount,
-            createdAt: user.createdAt
+            createdAt: user.createdAt,
+            nft_count: nft_count,
+            post_count: post_count,
+            nft: nft,
+            post: post
         })
     }else{
         res.status(400).send("유저 정보 조회 실패");
