@@ -91,22 +91,27 @@ const mint = async (req, res, next) => {
             email: req.body.email
         }
     });
+    // console.log(user.address);
     const tokenContract = await new web3.eth.Contract(
         TOKEN_CONTRACT_ABI,
         TOKEN_CONTRACT_ADDR,
         {from: user.address}
     );
+    // console.log("check0");
     const NFTContract = await new web3.eth.Contract(
         NFT_CONTRACT_ABI,
         NFT_CONTRACT_ADDR,
         {from: process.env.SERVER_ADDRESS}
     );
+    // console.log("check1");
 
-
+    console.log(user.password);
     // approve
     await web3.eth.personal.unlockAccount(user.address, user.password, 600);
+    console.log("check3");
     const result_ = await tokenContract.methods.approve(process.env.NFT_CONTRACT_ADDR, 100).send();
     // console.log(result_.events);
+    console.log("check2");
 
     // mint
     const result = await NFTContract
@@ -120,7 +125,7 @@ const mint = async (req, res, next) => {
             gas: 1500000,
             gasPrice: '3000000'
         });
-    
+        console.log("check2");
     const tokenId = result.events.Transfer.returnValues.tokenId;
     console.log(result.transactionHash);
     const nft_amount = await NFTContract.methods.balanceOf(user.address).call();
