@@ -31,6 +31,7 @@ function LogIn() {
             sessionStorage.setItem("email", email);
             sessionStorage.setItem("address", result.data.data.address);
             sessionStorage.setItem("nickname", result.data.data.nickname);
+            sessionStorage.setItem("id", result.data.data.id);
             window.location = '/';
         } catch (e) {
             console.log(e);
@@ -43,7 +44,8 @@ function LogIn() {
             setLoginData({
                 email: sessionStorage.getItem("email"),
                 address: sessionStorage.getItem("address"),
-                nickname: sessionStorage.getItem("nickname")
+                nickname: sessionStorage.getItem("nickname"),
+                id: sessionStorage.getItem("id")
             })
         }
     }, [])
