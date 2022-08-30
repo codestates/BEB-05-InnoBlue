@@ -1,0 +1,43 @@
+.mainNav {
+    padding-top: 1.8rem;
+    color: white;
+  }
+
+  .mainNavText {  
+    text-align: center;
+    font-size: 1.4rem;  
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .Nav_box {
+      margin-top: -4;
+  }
+
+  .main_Table{
+      margin-top: 80px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.3rem;
+      background-color:rgba(203, 229, 248, 0.725);
+  }
+
+  th, td {
+      height: 50px;
+    }
+
+.main_heading {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 4.0rem;
+    font-style: italic;
+    font-weight: 600;
+    color: darkblue;
+
+}
+
+.backImage {
+    background-image: url('../img/main_back.jpg');
+}
+
+.go_to_font {
+    font-size:1.5rem;
+    font-weight: 600;
+}
