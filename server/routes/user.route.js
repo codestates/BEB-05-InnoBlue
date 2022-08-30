@@ -7,5 +7,5 @@ const logoutcontroller = require("../controllers/logout.controller");
 router.post("/signup", controller.signup);
 router.post("/login", logincontroller.user_login);
 router.post("/logout", logoutcontroller.user_logout);
-router.get("/:userId/userinfo", controller.userinfo);
+router.get("/userinfo/:userId", controller.userinfo);
 module.exports = router;
