@@ -60,7 +60,7 @@ export default function NFTMintPage(isLogin) {
             console.log(result);
         }
         catch (error) {
-            alert('다시 시도해주세요');
+            alert('다시 시도해주세요.');
             console.log(error)
         }
 
