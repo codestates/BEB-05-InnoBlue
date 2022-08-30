@@ -8,11 +8,19 @@ function Header(props) {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
-  const handleClick = () => setClick(!click);
-  const closeMobileMenu = () => setClick(false);
-
   const isLogin = props.isLogin;
 
+  const handleClick = () => {
+    if(!isLogin) {
+      alert('로그인을 먼저 하세요')
+    } else {
+      setClick(!click);
+    }
+  }
+  const closeMobileMenu = () => setClick(false);
+
+
+  
   const onLogOut = () => {
     sessionStorage.removeItem("email");
     window.location = "/";
@@ -43,15 +51,26 @@ function Header(props) {
           </Link>
           <ul className={click ? "header-menu active" : "header-menu"}>
             <li className="header-item">
-              <Link
-                to="/mint"
+              {isLogin? (
+                <Link
+                  to="/mint"
+                  className="header-links"
+                  onClick={closeMobileMenu}
+                >
+                  NFT mint
+                </Link>
+              ) : (
+                <Link
+                to="/login"
                 className="header-links"
-                onClick={closeMobileMenu}
-              >
+                onClick={handleClick}
+                >
                 NFT mint
-              </Link>
+                </Link>
+              )}
             </li>
             <li className="header-item">
+            {isLogin? (
               <Link
                 to="../market"
                 className="header-links"
@@ -59,15 +78,34 @@ function Header(props) {
               >
                 NFT market
               </Link>
+            ) : (
+              <Link
+              to="/login"
+              className="header-links"
+              onClick={handleClick}
+              >
+              NFT market
+              </Link>
+            )}
             </li>
             <li className="header-item">
-              <Link
-                to="/mypage"
-                className="header-links"
-                onClick={closeMobileMenu}
-              >
+              {isLogin? (
+                <Link
+                  to="/mypage"
+                  className="header-links"
+                  onClick={closeMobileMenu}
+                >
                 My page
-              </Link>
+                </Link>
+              ) : (
+                <Link
+                to="/login"
+                className="header-links"
+                onClick={handleClick}
+                >
+                My page
+                </Link>
+              )}
             </li>
             <li>
               <Link
@@ -79,8 +117,6 @@ function Header(props) {
               </Link>
             </li>
           </ul>
-
-          {/* {isLogin? <button onClick={onLogOut}>Logout </button> : <Link to ="/login">LOG IN</ Link>}   */}
 
           {isLogin ? (
             <Button variant="light" onClick={onLogOut}>

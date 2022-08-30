@@ -91,7 +91,7 @@ export default function NFTMintPage(isLogin) {
                                 onChange={(e) => handleChangeTitle(e.target.value)}/>
                             </Form.Group>
                         </Form> 
-                        <center><Button className="m-4 p-3 btn-dark btn-lg rounded" onClick={mint}>Mint</Button></center>
+                        <center><Button className="mint_font_size" variant="outline-warning mt-4 mb-3 p-3 btn-Info" onClick={mint}>Mint</Button></center>
                     </Col>
                     <Col></Col>
                     

@@ -6,29 +6,27 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import List from "./List";
-// import MyList from "./MyList";
 import "./styles/mypage.css";
+import NFT from '../components/NFT';
 
 export default function MyPage() {
-  const [postlist, setpostlist] = useState();
-  //  const [nftlist, setnftlist] = useState();
+  const [user, setUser] = useState();
 
   const mypage = async () => {
     try {
-      const result = await axios.get("http://localhost:4000/post/postlist");
-      console.log(result);
-      // setpostlist(result.data.data);
-      //setnftlist(result.data.data);
+      const userId = sessionStorage.getItem("id");
+      const result = await axios.get(`http://localhost:4000/user/userinfo/${userId}`);
+      setUser(result.data);
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    mypage();
+    mypage()
   }, []);
 
-  return (
+  return user ? (
     <div>
       <Container className="panel">
         <center>
@@ -40,28 +38,45 @@ export default function MyPage() {
               <tr>
                 <th>🔵닉네임</th>
                 <th>
-                  <th>
-                    {postlist &&
-                      postlist.map((el) => {
-                        return <List title={el.title} />;
-                      })}
-                  </th>
+                  {user.nickname}
                 </th>
               </tr>
               <tr>
                 <th>📦지갑주소</th>
+                <th>{user.address}</th>
               </tr>
               <tr>
-                <th>🖼나의 NFT</th>
-                <th></th>
+                <th>🫐이노블루 토큰 개수</th>
+                <th>{user.token_amount} INB</th>
+              </tr>
+              <tr>
+                <th>🪙이더리움 토큰 개수</th>
+                <th>{user.eth_amount} ETH</th>
+              </tr>
+              <tr>
+                <th>🖼나의 NFT 개수</th>
+                <th>{user.nft_count}</th>
+              </tr>
+              <tr>
+                <th>🟦나의 NFT</th>
+                <th>
+                <div className = "tokenlist">
+                <div className="erc721List">
+                  {user.nft.map((nft) =>{
+                  return <NFT tokenId={nft.tokenId} key={nft.tokenId}/>
+                })}
+                </div> </div>
+                </th>
+              </tr>
+              <tr>
+                <th>📄나의 게시글 개수</th>
+                <th>{user.post_count}</th>
               </tr>
               <tr>
                 <th>📄나의 게시글</th>
-                <th></th>
-              </tr>
-              <tr>
-                <th>🪙토큰 개수</th>
-                <th></th>
+                <th>{user.post.map((post) => {
+                  return <List title = {post.title} link={`/readpost/${post.id}`}/>
+                })}</th>
               </tr>
             </thead>
           </Table>
@@ -77,5 +92,5 @@ export default function MyPage() {
         </Link>
       </Container>
     </div>
-  );
+  ): null;
 }

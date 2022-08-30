@@ -5,17 +5,13 @@ import { Link } from "react-router-dom";
 
 export default function List ({ id, title, nickname, createdAt, link }) {
     return (
-        <Link to={link}>
-            <Table striped bordered hover className="mt-5" >
-            <tbody>
+        // <Link to={link}>                        
                 <tr>
                     <td>{id}</td>
                     <td>{title}</td>
                     <td>{nickname}</td>
                     <td>{createdAt}</td>
-                </tr>
-            </tbody>
-        </Table>
-        </Link>
+                </tr>            
+        // </Link>
     )
 }

@@ -9,7 +9,7 @@ import WritePage from './pages/WritePage';
 
 import MyPage from './pages/MyPage';
 import ReadPost from './pages/ReadPost';
-// import DetailPage from './pages/DetailPage';
+import DetailPage from './pages/DetailPage';
 import SignUpPage from './pages/SignUpPage';
 import LogInPage from './pages/LogInPage';
 import NFTMintPage from './pages/NFTMintPage';
@@ -17,7 +17,7 @@ import NFTMarketPage from './pages/NFTMarketPage';
 import NFTDetailPage from './pages/NFTDetailPage';
 
 // import NotFound from './pages/NotFound'; //optional
-// import Footer from './components/Footer'; //optional
+import Footer from './components/Footer'; //optional
 // import Home from "./components/Home";
 
 
@@ -36,7 +36,7 @@ function App() {
 
   return (
     <BrowserRouter>
-    <div className="App">
+    <div className="App backImage">
       <main>
       <header>
         <Header  isLogin={isLogin} />
@@ -47,7 +47,7 @@ function App() {
             <Route path = '/' element = {<MainPage isLogin={isLogin} />} />
             <Route path = '/writepage' element = {<WritePage isLogin={isLogin} />} />
             <Route path = '/mypage' element = {<MyPage />} />
-            {/* <Route path = '/detail/:id' element = {<DetailPage />} /> */}
+            <Route path = '/detail/:id' element = {<DetailPage />} />
             <Route path = '/readpost/:id' element = {<ReadPost isLogin={isLogin} />} />
             <Route path = '/signup' element = {<SignUpPage />} />
             <Route path = '/login' element = {<LogInPage isLogin={isLogin} />} />
@@ -58,7 +58,7 @@ function App() {
           </Routes>
         </Container>
       </section>
-      {/* <Footer/> */}
+      <Footer/>
       </main>
       </div>
     </BrowserRouter>

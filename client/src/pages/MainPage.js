@@ -1,14 +1,25 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
+
+import './styles/mainpage.css';
+
+
+// import { faCheckSquare, faFlag } from "@fortawesome/free-solid-svg-icons";
+// import { faCircle } from "@fortawesome/free-regular-svg-icons";
+// import { faAddressBook } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+
 import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import main_img from './img/main_img.png';
 import axios from 'axios';
 import List from './List';
-// import Pagination from './Pagination';
-// import Write_page from './WritePage';
 
 export default function MainPage() {
     const [postlist, setPostlist] = useState();
@@ -30,27 +41,32 @@ export default function MainPage() {
 
     return <div>
         <Container className="panel">
-            <center><h1>메인 페이지</h1></center>
-            <div>
-            <Table striped bordered hover className="mt-5" >            
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>Title</th>
-                        <th>Writer</th>
-                        <th>Created at</th>
-                        <th>Views</th>
-                    </tr>
-                </thead>
-            </Table>
-            {postlist && postlist.map((el) => {
-                    return (<List id={el.id} title={el.title} nickname={el.nickname} content={el.content} createdAt={el.createdAt} link={`/readpost/${el.id}`} />)
-                })}
-            </div>
+            <center><span className ='main_heading'>Attention! Here are Blue Nerds!! </span></center>
+            <Row>
+                <div className='table-box'>
+                    <Table rounded responsive bordered hover size="md" className="main_Table">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Title</th>
+                                <th>Nickname</th>
+                                <th>Created at</th>                        
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {postlist && postlist.map((el) => {
+                                    return (
+                                    <List id={el.id} title={el.title} nickname={el.nickname} createdAt={el.createdAt} />)
+                                })}
+                        </tbody>
+
+                    </Table>           
+                </div>
+            </Row>
             <Link to = "/writepage">
-            <center><Button className="mt-4 mb-3 p-3 btn-primary btn-lg">Go to Write Page</Button></center>
+                <center><Button className="go_to_font" variant="outline-warning mt-4 mb-3 p-3 btn-Info">Go to Write Page</Button></center>
             </Link>
-            <div className="noneDiv"><img src={main_img} width={"100%"} className="main_img" alt="Main pic"/></div>
+            {/* <div className="noneDiv"><img src={main_img} width={"100%"} className="main_img" alt="Main pic"/></div> */}
         </Container>
         </div>;
 }

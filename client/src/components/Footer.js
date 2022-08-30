@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <div className="footer-container">
+    <div className="mt-5 footer-container">
       <section className="footer-subscription">
         <p className="footer-subscription-heading">
           Thank You For Your Interest In Our Project
@@ -14,7 +14,7 @@ function Footer() {
         <p className="footer-subscription-text">
           If you are curious about Inno blue
         </p>
-        <div className="input-areas">
+        {/* <div className="input-areas">
           <form>
             <input
               className="footer-input"
@@ -24,39 +24,39 @@ function Footer() {
             />
             <Button buttonStyle="btn--outline">Search</Button>
           </form>
-        </div>
+        </div> */}
       </section>
       <div className="footer-links">
         <div className="footer-link-wrapper">
           <div className="footer-link-items">
             <h2>About Us</h2>
-            <Link to="/">Kim</Link>
-            <Link to="/">LEE</Link>
+            <Link to="/">Doyeong Kim</Link>
+            <Link to="/">Donghyun LEE</Link>
             <Link to="/">Hyein LEE</Link>
             <Link to="/">Hyojeong LEE</Link>
           </div>
           <div className="footer-link-items">
-            <h2>Position</h2>
-            <Link to="/">Team Leader</Link>
-            <Link to="/">Team members</Link>
-            <Link to="/">Team members</Link>
-            <Link to="/">Team members</Link>
+            <h2>Team</h2>
+            <Link to="/">Leader</Link>
+            <Link to="/">members</Link>
+            <Link to="/">members</Link>
+            <Link to="/">members</Link>
           </div>
         </div>
         <div className="footer-link-wrapper">
           <div className="footer-link-items">
-            <h2>수정</h2>
-            <Link to="/">BE</Link>
-            <Link to="/">BE</Link>
-            <Link to="/">FE</Link>
-            <Link to="/">FE</Link>
+            <h2>Position</h2>
+            <Link to="/">Back-End</Link>
+            <Link to="/">Back-End</Link>
+            <Link to="/">Front-End</Link>
+            <Link to="/">Front-End</Link>
           </div>
           <div className="footer-link-items">
             <h2>github</h2>
-            <Link to="/">수정</Link>
-            <Link to="/">수정</Link>
-            <Link to="/">수정</Link>
-            <Link to="/">수정</Link>
+            <Link to="https://github.com/bcdy19">bcdy19</Link>
+            <Link to="https://github.com/dhjefflee">dhkefflee</Link>
+            <Link to="https://github.com/hyenne">hyenne</Link>
+            <Link to="https://github.com/rootrue">rootrue</Link>
           </div>
         </div>
       </div>
