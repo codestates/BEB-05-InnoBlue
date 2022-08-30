@@ -50,6 +50,7 @@
 
 .tokenlist {
   padding: 40px;
+  align-items: center;
 }
 .tokenlist .explore-title {
   font-size: 4.8rem;
@@ -65,6 +66,7 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 0.8rem;
+  
 }
 .tokenlist .erc721List .erc721token {
   background-color: #ffffff;
@@ -85,7 +87,7 @@
   margin-bottom: 0.8rem;
 }
 .tokenlist .erc721List .erc721token .token-item .name {
-  font-size: 2.4rem;
+  font-size: flex;
 }
 .tokenlist .erc721List .erc721token .token-item .symbol {
   font-size: 2rem;

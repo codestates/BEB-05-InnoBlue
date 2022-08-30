@@ -29,7 +29,7 @@ function NFT({ tokenId }) {
                         <img width={10} src="https://static.opensea.io/general/ETH.svg" />
                     </div>
                     <div className="price-text">
-                        {nft.price}
+                        {nft.price} INB
                     </div>
                 </div> : <div className="price-text">
                         not for sale

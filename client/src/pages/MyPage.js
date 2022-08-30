@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import List from "./List";
 import "./styles/mypage.css";
+import NFT from '../components/NFT';
 
 export default function MyPage() {
   const [user, setUser] = useState();
@@ -53,12 +54,25 @@ export default function MyPage() {
                 <th>{user.eth_amount} ETH</th>
               </tr>
               <tr>
-                <th>🖼나의 NFT</th>
-                <th>coming soon</th>
+                <th>🖼나의 NFT 개수</th>
+                <th>{user.nft_count}</th>
               </tr>
               <tr>
-                <th>📄나의 게시글</th>
-                <th>coming soon</th>
+                <th>🖼나의 NFT</th>
+                <th>
+                <div className = "tokenlist">
+                <div className="erc721List">
+                  {user.nft.map( nft =>{
+                  return(
+                    <NFT tokenId={nft.tokenId} key={nft.tokenId}/>
+                )
+                })}
+                </div> </div>
+                </th>
+              </tr>
+              <tr>
+                <th>📄나의 게시글 개수</th>
+                <th>{user.post_count}</th>
               </tr>
             </thead>
           </Table>

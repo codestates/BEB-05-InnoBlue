@@ -332,7 +332,11 @@ GET /user/userinfo/${userId}
     "address": "유저_주소",
     "token_amount": 토큰_양,
     "eth_amount": 이더리움_양,
-    "createdAt": "2022-08-25T18:48:27.000Z"
+    "createdAt": "2022-08-25T18:48:27.000Z",
+    "nft_count": nft 개수,
+    "post_count": post 개수,
+    "nft": nft 리스트,
+    "post": post 리스트
 }
 
 400 FAIL
