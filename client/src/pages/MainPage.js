@@ -6,9 +6,7 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import main_img from './img/main_img.png';
 import axios from 'axios';
-import List from './List';
-// import Pagination from './Pagination';
-// import Write_page from './WritePage';
+import List from '../components/List';
 
 export default function MainPage() {
     const [postlist, setPostlist] = useState();

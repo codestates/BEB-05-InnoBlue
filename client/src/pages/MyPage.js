@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import List from "./List";
+import List from "../components/List";
 import "./styles/mypage.css";
 import NFT from '../components/NFT';
 import Form from 'react-bootstrap/Form';
