@@ -49,9 +49,11 @@ const _tokenTransfer = async(user, to, amount) => {
     );
 
     await web3.eth.personal.unlockAccount(user.address, user.password, 600);
-    await tokenContract.methods.transfer(to, amount).send();
+    
+    await tokenContract.methods.transfer(to, amount).send();    
     const token_amount = await tokenContract.methods.balanceOf(user.address).call();
     const receiver_token_amount = await tokenContract.methods.balanceOf(to).call();
+    console.log('check2');
 
     await User.update({token_amount: receiver_token_amount}, {where: {address: to}});
     await User.update({token_amount: token_amount}, {where: {address: user.address}});
@@ -59,6 +61,8 @@ const _tokenTransfer = async(user, to, amount) => {
 };
 
 const tokenTransfer = async(req, res, next) => { // 게시글 작성
+    console.log(req.body.address);
+    console.log(req.body.email);
     const user = await User.findOne({
         where: {
             address: req.body.address

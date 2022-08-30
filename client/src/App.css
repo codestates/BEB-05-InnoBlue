@@ -95,3 +95,9 @@
 .tokenlist .erc721List .erc721token .token-item .nft {
   font-size: 1.6rem;
 }
+.validation-content {
+  margin-top: 1rem;
+}
+.validation-text {
+  color:#E45635;
+}
