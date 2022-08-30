@@ -9,24 +9,23 @@ import List from "./List";
 import "./styles/mypage.css";
 
 export default function MyPage() {
-  const userId = sessionStorage.getItem("id");
   const [user, setUser] = useState();
 
   const mypage = async () => {
     try {
+      const userId = sessionStorage.getItem("id");
       const result = await axios.get(`http://localhost:4000/user/userinfo/${userId}`);
       setUser(result.data);
-      console.log(result.data);
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    mypage();
+    mypage()
   }, []);
 
-  return (
+  return user ? (
     <div>
       <Container className="panel">
         <center>
@@ -36,19 +35,13 @@ export default function MyPage() {
           <Table striped bordered hover className="mt-5">
             <thead>
               <tr>
-                <th>🧢유저 계정</th>
-                <th>
-                  {user.email}
-                </th>
-              </tr>
-              <tr>
                 <th>🔵닉네임</th>
                 <th>
                   {user.nickname}
                 </th>
               </tr>
               <tr>
-                <th>💳지갑주소</th>
+                <th>📦지갑주소</th>
                 <th>{user.address}</th>
               </tr>
               <tr>
@@ -81,5 +74,5 @@ export default function MyPage() {
         </Link>
       </Container>
     </div>
-  );
+  ): null;
 }
