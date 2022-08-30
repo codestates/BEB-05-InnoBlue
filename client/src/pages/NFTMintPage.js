@@ -56,9 +56,11 @@ export default function NFTMintPage(isLogin) {
                 },
                 {withCredentilas: true}
             )
+            alert('NFTMint 성공!');
             console.log(result);
         }
         catch (error) {
+            alert('다시 시도해주세요');
             console.log(error)
         }
 

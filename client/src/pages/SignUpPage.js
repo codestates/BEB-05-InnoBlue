@@ -45,7 +45,9 @@ function SignUp(){
             console.log(result);
             setUserData(result.data.data);
             setMessage(result.data.message);
+            alert('회원가입 성공!');
         } catch (e) {
+            alert('잘못된 접근입니다.');
             setMessage(e.response.data);
         }
     }

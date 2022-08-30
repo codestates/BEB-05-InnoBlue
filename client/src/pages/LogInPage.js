@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 
+
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
@@ -33,8 +34,10 @@ function LogIn() {
             sessionStorage.setItem("address", result.data.data.address);
             sessionStorage.setItem("nickname", result.data.data.nickname);
             sessionStorage.setItem("id", result.data.data.id);
+            alert('로그인 성공!');
             window.location = '/';
         } catch (e) {
+            alert('로그인 실패!');
             console.log(e);
             setMessage(e.response.data);
         }
@@ -115,7 +118,9 @@ function LogIn() {
                                         setPassword(e.target.value);
                                     }}/>
                                 </Form.Group>
+
                                 <center><Button variant="primary" className="m-3 btn_form" onClick={logIn}>Log In</Button></center>
+
                                 {message ? <>{message}</>: null}
                             </Form>
                             </div>
